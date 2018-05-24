@@ -14,5 +14,5 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
-//= require node_modules/admin-lte/dist/js/adminlte
+//= require admin-lte/dist/js/adminlte
 //= require_tree .
