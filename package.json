@@ -2,6 +2,7 @@
   "name": "rankz",
   "private": true,
   "dependencies": {
+    "admin-lte": "^3.0.0-alpha.2",
     "jquery": "^3.3.1"
   }
 }
