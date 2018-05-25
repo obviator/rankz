@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :tournaments
+  resources :tournaments, path: 't'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root 'pages#home'
+  root 'tournaments#index'
 end
