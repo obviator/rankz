@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  desc: MyText
+  slug: MyString
+  start_date: 2018-05-25
+  active: 1
+
+two:
+  name: MyString
+  desc: MyText
+  slug: MyString
+  start_date: 2018-05-25
+  active: 1
