@@ -15,4 +15,9 @@ class Tournament < ApplicationRecord
       [:name, :start_date]
     ]
   end
+
+
+  def self.list
+    Tournament.where('active >= ?', 0).order('start_date').all
+  end
 end
