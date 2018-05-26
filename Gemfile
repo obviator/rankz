@@ -47,6 +47,18 @@ gem 'friendly_id', '~> 5.2.0'
 # Font awesome
 gem 'font-awesome-rails'
 
+# User roles management
+gem 'rolify', '~> 5.2.0'
+
+# User registration management
+# gem 'devise', '~> 4.4.3'
+
+# Devise views for use with twitter bootstrap
+# gem 'devise-bootstrap-views', '~> 0.0.11'
+
+#Best-In-Place AJAX editor
+# gem 'best_in_place', '~> 3.0.3'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
