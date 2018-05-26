@@ -54,7 +54,7 @@ gem 'rolify', '~> 5.2.0'
 gem 'devise', '~> 4.4.3'
 
 # Devise views for use with twitter bootstrap
-# gem 'devise-bootstrap-views', '~> 0.0.11'
+gem 'devise-bootstrap-views', '~> 0.0.11'
 
 #Best-In-Place AJAX editor
 # gem 'best_in_place', '~> 3.0.3'
