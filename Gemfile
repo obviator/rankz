@@ -51,7 +51,7 @@ gem 'font-awesome-rails'
 gem 'rolify', '~> 5.2.0'
 
 # User registration management
-# gem 'devise', '~> 4.4.3'
+gem 'devise', '~> 4.4.3'
 
 # Devise views for use with twitter bootstrap
 # gem 'devise-bootstrap-views', '~> 0.0.11'
