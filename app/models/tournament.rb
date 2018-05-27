@@ -1,5 +1,7 @@
 
 class Tournament < ApplicationRecord
+  resourcify
+
   validates :name, presence: true, length: { minimum: 2, maximum: 20 }, uniqueness: true
   validates :slug, presence: true, length: { minimum: 2, maximum: 20 }, uniqueness: true
 
@@ -9,9 +11,9 @@ class Tournament < ApplicationRecord
   def slug_candidates
     [
       :name,
-      [:name, '-1'],
-      [:name, '-2'],
-      [:name, '-3'],
+      [:name, :start_date.strftime('%y')],
+      [:name, :start_date.strftime('%Y')],
+      [:name, :start_date.strftime('%y-%m-%d')],
       [:name, :start_date]
     ]
   end
