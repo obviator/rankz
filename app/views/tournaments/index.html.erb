@@ -1,6 +1,7 @@
 <p id="notice"><%= notice %></p>
-
-<h1>Tournaments</h1>
+<div class="page-header">
+  <h1>Tournaments</h1>
+</div>
 <div class="card-columns">
   <% @tournaments.where('start_date >= ?', Date.yesterday).each do |tournament| %>
     <div class="card card-primary card-outline">
