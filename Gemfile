@@ -56,6 +56,9 @@ gem 'devise', '~> 4.4.3'
 # Devise views for use with twitter bootstrap
 gem 'devise-bootstrap-views', '~> 0.0.11'
 
+# Webpacker
+gem 'webpacker', '~> 3.5'
+
 #Best-In-Place AJAX editor
 # gem 'best_in_place', '~> 3.0.3'
 
