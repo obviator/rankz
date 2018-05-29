@@ -23,6 +23,10 @@
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper bg-white">
+      <%# flash.each do |name, msg| %>
+        <%#= content_tag(:div, msg, class: "alert alert-info") %>
+      <%# end %>
+      <%= flash_messages %>
       <%= yield %>
     <!-- /.content -->
     </div>
