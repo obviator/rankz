@@ -35,8 +35,8 @@ gem 'jbuilder', '~> 2.5'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
-# Bootstrap 4
-gem 'bootstrap', '~> 4.1.1'
+# # Bootstrap 4
+# gem 'bootstrap', '~> 4.1.1'
 
 # jQuery
 gem 'jquery-rails'
@@ -44,8 +44,8 @@ gem 'jquery-rails'
 # Use slug instead of ID
 gem 'friendly_id', '~> 5.2.0'
 
-# Font awesome
-gem 'font-awesome-rails'
+# # Font awesome
+# gem 'font-awesome-rails'
 
 # User roles management
 gem 'rolify', '~> 5.2.0'
@@ -53,8 +53,8 @@ gem 'rolify', '~> 5.2.0'
 # User registration management
 gem 'devise', '~> 4.4.3'
 
-# Devise views for use with twitter bootstrap
-gem 'devise-bootstrap-views', '~> 0.0.11'
+# # Devise views for use with twitter bootstrap
+# gem 'devise-bootstrap-views', '~> 0.0.11'
 
 # Webpacker
 gem 'webpacker', '~> 3.5'
