@@ -13,3 +13,5 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+
+// console.log('Hello World from Sprockets');

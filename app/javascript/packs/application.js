@@ -7,19 +7,14 @@
 // To reference this file, add <%= javascript_pack_tag 'application' %> to the appropriate
 // layout file, like app/views/layouts/application.html.erb
 
-import '../../../node_modules/admin-lte/plugins/jquery/jquery.min.js'
-import 'bootstrap'
-// import 'admin-lte'
-// import 'jquery/dist/jquery.js'
-import './src/application.scss'
-// import 'bootstrap/dist/css/bootstrap.css';
+// console.log('Hello World from Webpacker');
+// console.log(typeof $);
 
+import "jquery";
+import "jquery-ujs";
+import "bootstrap";
+import "admin-lte";
 
-
-
-// import 'jquery/src/jquery'
-// import 'jquery-ujs/src/rails'
-// import 'bootstrap/dist/css/bootstrap.css';
-// import 'bootstrap/dist/css/bootstrap-theme'
-// import 'bootstrap/dist/js/bootstrap';
-// import 'style/application.scss'
+// import './src/application.scss';
+// import '../../../node_modules/bootstrap/dist/js/bootstrap';
+// import "bootstrap/dist/js/bootstrap";

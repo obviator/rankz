@@ -39,13 +39,13 @@ gem 'bootsnap', '>= 1.1.0', require: false
 # gem 'bootstrap', '~> 4.1.1'
 
 # jQuery
-gem 'jquery-rails'
+# gem 'jquery-rails'
 
 # Use slug instead of ID
 gem 'friendly_id', '~> 5.2.0'
 
 # # Font awesome
-# gem 'font-awesome-rails'
+gem 'font-awesome-rails'
 
 # User roles management
 gem 'rolify', '~> 5.2.0'
@@ -53,11 +53,10 @@ gem 'rolify', '~> 5.2.0'
 # User registration management
 gem 'devise', '~> 4.4.3'
 
-# # Devise views for use with twitter bootstrap
-# gem 'devise-bootstrap-views', '~> 0.0.11'
+# # Devise views fap-views', '~> 0.0.11'
 
 # Webpacker
-gem 'webpacker', '~> 3.5'
+gem 'webpacker'
 
 #Best-In-Place AJAX editor
 # gem 'best_in_place', '~> 3.0.3'
@@ -70,6 +69,7 @@ end
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'web-console', '>= 3.3.0'
+  gem 'rails_real_favicon'
 end
 
 group :test do
