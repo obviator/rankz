@@ -1,7 +1,8 @@
-const { environment } = require('@rails/webpacker')
-const webpack = require('webpack')
+const { environment } = require('@rails/webpacker');
 
-module.exports = environment
+const webpack = require('webpack');
+
+module.exports = environment;
 
 environment.plugins.prepend(
     'Provide',
@@ -11,4 +12,4 @@ environment.plugins.prepend(
         jquery: 'jquery',
         Tether: 'tether'
     })
-)
+);

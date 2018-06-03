@@ -36,10 +36,10 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 # # Bootstrap 4
-# gem 'bootstrap', '~> 4.1.1'
+gem 'bootstrap', '~> 4.1.1'
 
 # jQuery
-# gem 'jquery-rails'
+gem 'jquery-rails'
 
 # Use slug instead of ID
 gem 'friendly_id', '~> 5.2.0'

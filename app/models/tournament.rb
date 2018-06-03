@@ -2,6 +2,9 @@
 class Tournament < ApplicationRecord
   resourcify
 
+  has_many :teams
+  has_many :races
+
   validates :name, presence: true, length: { minimum: 2, maximum: 20 }, uniqueness: true
   validates :slug, presence: true, length: { minimum: 2, maximum: 20 }, uniqueness: true
 

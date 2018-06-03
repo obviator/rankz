@@ -1,0 +1,29 @@
+<!--<p id="notice"><%#= notice %></p>-->
+<div class="page-header m-3">
+  <h1>Teams</h1><%= link_to 'Add team...', new_tournament_team_path, remote: true, class: "btn btn-primary" %>
+</div>
+<div class="table-responsive-lg">
+  <table class="table table-sm">
+    <thead class="thead-light">
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Race</th>
+      <th scope="col">Last</th>
+      <th scope="col">Handle</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @teams.each do |team| %>
+      <tr>
+        <td>
+          <%= team.name %>
+        </td>
+        <td>
+          <%= team.race.name %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+<%#= link_to 'New Tournament', new_tournament_path %>

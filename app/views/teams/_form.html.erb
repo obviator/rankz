@@ -1,0 +1,15 @@
+<%= form_for [@tournament, @team], remote: true do |f| %>
+
+  <%#= render 'shared/errors', obj: @team %>
+
+  <!--  <div class="form-group">-->
+  <%= f.label :name %>
+  <%= f.text_field :name, class: "form-control" %>
+  <!--  </div>-->
+  <!--  <div class="form-group">-->
+  <%= f.label :race %>
+  <%#= f.text_field :name, class: "form-control" %>
+  <%= f.collection_select(:race_id, Race.all, :id, :name, {} , class: "form-control") %>
+  <!--  </div>-->
+  <%#= f.submit %>
+<% end %>

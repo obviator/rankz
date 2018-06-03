@@ -26,10 +26,11 @@
     <%= render 'layouts/sidebar' %>
 
     <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper bg-white">
+    <div class="content-wrapper bg-white pl-lg-3 pl-md-2 pl-xs-1">
       <%# flash.each do |name, msg| %>
         <%#= content_tag(:div, msg, class: "alert alert-info") %>
       <%# end %>
+      <%= render "layouts/modal" %>
       <%= flash_messages %>
       <%= yield %>
     <!-- /.content -->

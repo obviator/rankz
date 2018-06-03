@@ -16,7 +16,7 @@
         <h6 class="card-title"><%= tournament.start_date %></h6>
 
         <p class="card-text"><%= tournament.desc %></p>
-        <%= link_to 'Select', tournament, class: "btn btn-primary" %>
+        <%= link_to 'Select', tournament_teams_path(tournament), class: "btn btn-primary" %>
       </div>
     </div>
   <% end %>
@@ -34,7 +34,7 @@
         <h6 class="card-title"><%= tournament.start_date %></h6>
 
         <p class="card-text"><%= tournament.desc %></p>
-        <%= link_to 'Select', tournament, class: "btn btn-secondary" %>
+        <%= link_to 'Select', tournament_teams_path(tournament), class: "btn btn-secondary" %>
       </div>
     </div>
   <% end %>
