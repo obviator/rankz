@@ -14,10 +14,10 @@ class Tournament < ApplicationRecord
   def slug_candidates
     [
       :name,
-      [:name, :start_date.strftime('%y')],
-      [:name, :start_date.strftime('%Y')],
-      [:name, :start_date.strftime('%y-%m-%d')],
-      [:name, :start_date]
+      [:name, self.start_date.strftime('%y')],
+      [:name, self.start_date.strftime('%Y')],
+      [:name, self.start_date.strftime('%y-%m-%d')],
+      [:name, self.start_date]
     ]
   end
 

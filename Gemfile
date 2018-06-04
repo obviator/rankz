@@ -40,6 +40,7 @@ gem 'bootstrap', '~> 4.1.1'
 
 # jQuery
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 
 # Use slug instead of ID
 gem 'friendly_id', '~> 5.2.0'

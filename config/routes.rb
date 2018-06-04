@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  resources :tournaments, path: '', only: :index
+  resources :tournaments, path: '', only: %i[index]
 
-  resources :tournaments, path: 't', except: :index do
+  resources :tournaments, path: 't', except: %i[index] do
     resources :teams, shallow: true
   end
 

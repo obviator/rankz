@@ -3,25 +3,18 @@
   <h1>Teams</h1><%= link_to 'Add team...', new_tournament_team_path, remote: true, class: "btn btn-primary" %>
 </div>
 <div class="table-responsive-lg">
-  <table class="table table-sm">
+  <table class="table table-sm" id="teams-list">
     <thead class="thead-light">
     <tr>
       <th scope="col">Name</th>
       <th scope="col">Race</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
+      <th scope="col">Active</th>
+      <th scope="col">Edit</th>
     </tr>
     </thead>
     <tbody>
     <% @teams.each do |team| %>
-      <tr>
-        <td>
-          <%= team.name %>
-        </td>
-        <td>
-          <%= team.race.name %>
-        </td>
-      </tr>
+      <%= render 'teams/row', team: team %>
     <% end %>
     </tbody>
   </table>

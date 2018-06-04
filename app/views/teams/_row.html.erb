@@ -1,0 +1,18 @@
+<tr id="team_row_<%= team.id %>">
+  <td>
+    <%= team.name %>
+  </td>
+  <td>
+    <%= team.race.name %>
+  </td>
+  <td>
+    <div class="form-check">
+      <input class="form-check-input position-static" type="checkbox" value="<%= team.active %>">
+    </div>
+  </td>
+  <td>
+    <div class="form-check">
+      <%= link_to 'Edit', edit_team_path(team), remote: true, class: "btn btn-outline-primary" %>
+    </div>
+  </td>
+</tr>

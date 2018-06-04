@@ -1,0 +1,4 @@
+$modal = $('.modal');
+$modal.modal('hide');
+$('#team_row_<%= @team.id %>').replaceWith('<%= j render "teams/row", team: @team %>');
+$('#team_row_<%= @team.id %>').find('td').effect('highlight', {color: '#4BADF5'}, 2000);
