@@ -1,60 +1,60 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Rankz</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>Rankz</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%#= favicon_link_tag 'favicon.svg' %>
-    <%= render 'application/favicon' %>
+  <%#= favicon_link_tag 'favicon.svg' %>
+  <%= render 'application/favicon' %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
-    <%#= stylesheet_pack_tag 'application' %>
-    <%= javascript_pack_tag 'application' %>
-  </head>
+  <%#= stylesheet_pack_tag 'application' %>
+  <%= javascript_pack_tag 'application' %>
+</head>
 
-  <body class="sidebar-mini">
-  <div class="wrapper">
+<body class="sidebar-mini">
+<div class="wrapper">
 
-    <!-- Navbar -->
-    <%= render 'layouts/navbar' %>
-    <!-- /.navbar -->
+  <!-- Navbar -->
+  <%= render 'layouts/navbar' %>
+  <!-- /.navbar -->
 
-    <!-- Main Sidebar Container -->
-    <%= render 'layouts/sidebar' %>
+  <!-- Main Sidebar Container -->
+  <%= render 'layouts/sidebar' %>
 
-    <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper bg-white pl-lg-3 pl-md-2 pl-xs-1">
-      <%# flash.each do |name, msg| %>
-        <%#= content_tag(:div, msg, class: "alert alert-info") %>
-      <%# end %>
-      <%= render 'layouts/modal' %>
-      <%= flash_messages %>
-      <%= yield %>
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper bg-white pl-lg-3 pl-md-2 pl-xs-1">
+    <%# flash.each do |name, msg| %>
+    <%#= content_tag(:div, msg, class: "alert alert-info") %>
+    <%# end %>
+    <%= render 'layouts/modal' %>
+    <%= flash_messages %>
+    <%= yield %>
     <!-- /.content -->
-    </div>
-    <!-- /.content-wrapper -->
-
-    <!-- Control Sidebar -->
-    <%= render 'layouts/control_sidebar' %>
-    <!-- /.control-sidebar -->
-
-    <!-- Main Footer -->
-    <%= render 'layouts/footer' %>
   </div>
-  <!-- ./wrapper -->
+  <!-- /.content-wrapper -->
 
-  <!-- REQUIRED SCRIPTS -->
+  <!-- Control Sidebar -->
+  <%= render 'layouts/control_sidebar' %>
+  <!-- /.control-sidebar -->
 
-  <!-- jQuery -->
+  <!-- Main Footer -->
+  <%= render 'layouts/footer' %>
+</div>
+<!-- ./wrapper -->
+
+<!-- REQUIRED SCRIPTS -->
+
+<!-- jQuery -->
 <!--  <script src="plugins/jquery/jquery.min.js"></script>-->
-  <!-- Bootstrap 4 -->
+<!-- Bootstrap 4 -->
 <!--  <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>-->
 <!--  <script src="bootstrap.min.js"></script>-->
-  <!-- AdminLTE App -->
+<!-- AdminLTE App -->
 <!--  <script src="dist/js/adminlte.min.js"></script>-->
 <!--  <script src="../../../../node_modules/admin-lte/dist/js/adminlte.min.js"></script>-->
-  </body>
+</body>
 </html>

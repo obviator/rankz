@@ -24,10 +24,12 @@ class TeamsController < ApplicationController
   end
 
   def update
-    @team.update_attributes!(team_params)
-
     respond_to do |format|
-      format.js
+      if @team.update_attributes!(team_params)
+        format.js
+      else
+        format.js
+      end
     end
   end
 

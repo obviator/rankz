@@ -1,0 +1,24 @@
+<% if obj.errors.any? %>
+  <div class="row">
+    <div class="col-xs-8 col-xs-offset-2">
+      <div class="panel panel-danger">
+        <div class="panel-heading">
+          <h2 class="panel-title">
+            The <%= obj.class.to_s.downcase %> could not be saved due to the following <%= "error".pluralize(obj.errors.count) %>:
+          </h2>
+          <div class="panel-body">
+            <% obj.errors.keys.each do |attr| %>
+              <%= attr.capitalize %>:
+              <ul>
+                <% obj.errors[attr].each do |err| %>
+                  <li><%= err.capitalize %></li>
+                <% end %>
+                <% obj.errors[attr].delete_at(1) %>
+              </ul>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
