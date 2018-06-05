@@ -16,6 +16,8 @@
 //= require bootstrap
 //= require activestorage
 //= require turbolinks
+//= require messenger
+//= require messenger-theme-air
 //= require_tree .
 
 // console.log('Hello World from Sprockets');

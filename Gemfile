@@ -54,6 +54,9 @@ gem 'rolify', '~> 5.2.0'
 # User registration management
 gem 'devise', '~> 4.4.3'
 
+# Better flash messages
+gem 'messengerjs-rails', '~> 1.4.1'
+
 # # Devise views fap-views', '~> 0.0.11'
 
 # Webpacker

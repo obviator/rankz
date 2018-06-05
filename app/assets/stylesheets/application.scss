@@ -11,6 +11,9 @@
  * file per style scope.
  *= require fonts
  *= require jquery-ui
+ *= require messenger
+ *= require messenger-spinner
+ *= require messenger-theme-air
  *= require_tree .
  *= require_self
 */
