@@ -4,7 +4,7 @@ $modalBody = $('.modal .modal-body');
 $modalHeading = $('.modal .modal-header');
 $modalTitle = $('.modal .modal-header .modal-title');
 $modalFooter = $('.modal .modal-footer');
-$modalTitle.html("Edit team");
+$modalTitle.html("Edit <%= @team.name %>");
 $modalFooter.html('<input type="submit" value="Submit" form="edit_team_<%= @team.id %>" class="btn btn-primary">');
 $modalBody.html('<%= j render("form", races: @team.tournament.races) %>');
 $modal.modal();

@@ -10,14 +10,16 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
-//= require jquery-ui/effects/effect-highlight
+//= require jquery/dist/jquery
+//= require jquery-ui-bundle/jquery-ui
+//= require jquery-ui/ui/effects/effect-highlight
 //= require rails-ujs
-//= require bootstrap
+//= require bootstrap/dist/js/bootstrap
 //= require activestorage
 //= require turbolinks
-//= require messenger
-//= require messenger-theme-air
+//= require bootstrap-notify/bootstrap-notify
+//= require admin-lte/dist/js/adminlte
 //= require_tree .
 
-// console.log('Hello World from Sprockets');
+
+

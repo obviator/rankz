@@ -14,21 +14,27 @@ class TeamsController < ApplicationController
   def create
     @team = Team.new(team_params)
     @team.tournament = @tournament
-    @team.save
+    respond_to do |format|
+      if @team.save
+        format.js {flash.now[:notice] = 'Created'}
+      else
+        format.js {render action: 'new'}
+      end
+    end
+  end
+
+  def edit
     respond_to do |format|
       format.js
     end
   end
 
-  def edit
-  end
-
   def update
     respond_to do |format|
-      if @team.update_attributes!(team_params)
-        format.js
+      if @team.update_attributes(team_params)
+        format.js {flash.now[:notice] = 'Saved'}
       else
-        format.js
+        format.js {render action: 'edit'}
       end
     end
   end

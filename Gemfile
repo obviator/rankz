@@ -36,17 +36,17 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 # # Bootstrap 4
-gem 'bootstrap', '~> 4.1.1'
+# gem 'bootstrap', '~> 4.1.1'
 
 # jQuery
-gem 'jquery-rails'
-gem 'jquery-ui-rails'
+# gem 'jquery-rails'
+# gem 'jquery-ui-rails'
 
 # Use slug instead of ID
 gem 'friendly_id', '~> 5.2.0'
 
 # # Font awesome
-gem 'font-awesome-rails'
+# gem 'font-awesome-rails'
 
 # User roles management
 gem 'rolify', '~> 5.2.0'
@@ -54,13 +54,10 @@ gem 'rolify', '~> 5.2.0'
 # User registration management
 gem 'devise', '~> 4.4.3'
 
-# Better flash messages
-gem 'messengerjs-rails', '~> 1.4.1'
-
 # # Devise views fap-views', '~> 0.0.11'
 
 # Webpacker
-gem 'webpacker'
+# gem 'webpacker'
 
 #Best-In-Place AJAX editor
 # gem 'best_in_place', '~> 3.0.3'

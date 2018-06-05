@@ -7,7 +7,7 @@
   </td>
   <td>
     <div class="form-check">
-      <input class="form-check-input position-static" type="checkbox" value="<%= team.active %>">
+      <input class="form-check-input position-static" type="checkbox" <%= 'checked' if team.active? %>>
     </div>
   </td>
   <td>

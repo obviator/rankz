@@ -1,19 +1,17 @@
 // Custom bootstrap variables must be set or imported *before* bootstrap.
-//@import "admin-lte/dist/css/adminlte";
 
-//@import "jquery-ui";
-@import "font-awesome";
+@import "font-awesome/css/font-awesome";
 
 @import "bootstrap/scss/functions";
 @import "bootstrap/scss/variables";
 @import "bootstrap/scss/mixins";
-//@import "font-awesome";
 
-@import '../../../node_modules/bootstrap/scss/bootstrap';
-@import '../../../node_modules/admin-lte/dist/css/adminlte';
-@import '../../../node_modules/bootstrap/dist/css/bootstrap';
-//@import '../../../node_modules/font-awesome/scss/font-awesome';
-//@import '../../../node_modules/admin-lte/plugins/font-awesome/css/font-awesome';
+@import 'bootstrap/scss/bootstrap';
+@import 'admin-lte/dist/css/adminlte';
+@import 'bootstrap/dist/css/bootstrap';
+@import 'jquery-ui-bundle/jquery-ui';
+
+@import 'animate.css/animate';
 
 
 @import "fonts";
