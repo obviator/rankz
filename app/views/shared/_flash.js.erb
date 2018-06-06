@@ -1,0 +1,12 @@
+if ('<%= flash[:notice] %>') {
+
+    $(document).on('turbolinks:load', function () {
+        $.notify({
+            // options
+            message: '<%= flash[:notice] %>'
+        }, {
+            // settings
+            type: 'info'
+        });
+    })
+}

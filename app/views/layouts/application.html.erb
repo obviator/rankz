@@ -11,6 +11,7 @@
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
+  <script> <%= render 'shared/flash.js' %> </script>
 </head>
 
 <body class="sidebar-mini">
@@ -29,7 +30,7 @@
     <%#= content_tag(:div, msg, class: "alert alert-info") %>
     <%# end %>
     <%= render 'layouts/modal' %>
-    <%= flash_messages %>
+    <%#= flash_messages %>
     <%= yield %>
     <!-- /.content -->
   </div>
