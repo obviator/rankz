@@ -10,6 +10,8 @@ $(document).on('turbolinks:load', function () {
         $.notify({
             message: messages[i][1]
         }, {
+            allow_dismiss: messages[i][0] != 'info',
+            delay: messages[i][0] == 'info' ? 1000 : 0,
             type: messages[i][0]
         });
     }
