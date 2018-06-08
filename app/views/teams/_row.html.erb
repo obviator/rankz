@@ -7,7 +7,10 @@
   </td>
   <td>
     <div class="form-check">
-      <input class="form-check-input position-static" type="checkbox" <%= 'checked' if team.active? %>>
+      <section class="slider-checkbox">
+        <input type="checkbox"<%= ' checked=1' if team.active? %>>
+        <label class="label"></label>
+      </section>
     </div>
   </td>
   <td>
