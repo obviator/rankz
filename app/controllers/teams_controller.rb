@@ -1,6 +1,6 @@
 class TeamsController < ApplicationController
   before_action :set_tournament, only: %i[index new create]
-  before_action :set_team, only: %i[edit update]
+  before_action :set_team, only: %i[edit update toggle]
 
   def index
     @teams = @tournament.teams.order(:created_at)
@@ -16,9 +16,9 @@ class TeamsController < ApplicationController
     @team.tournament = @tournament
     respond_to do |format|
       if @team.save
-        format.js {flash.now[:notice] = 'Created'}
+        format.js { flash.now[:notice] = 'Created' }
       else
-        format.js {render action: 'new'}
+        format.js { render action: 'new' }
       end
     end
   end
@@ -32,9 +32,24 @@ class TeamsController < ApplicationController
   def update
     respond_to do |format|
       if @team.update_attributes(team_params)
-        format.js {flash.now[:notice] = 'Saved'}
+        format.js { flash.now[:notice] = 'Saved' }
       else
-        format.js {render action: 'edit'}
+        format.js { render action: 'edit' }
+      end
+    end
+  end
+
+  def toggle
+
+    respond_to do |format|
+      @team.active = @team.active.to_i * -1 + 1
+      if @team.save
+        format.js { flash.now[:notice] = 'Saved' }
+      else
+        format.js do
+          flash.now[:error] = 'Update failed'
+          render action: 'toggle', status: :internal_server_error
+        end
       end
     end
   end

@@ -8,7 +8,13 @@
   <td>
     <div class="form-check">
       <section class="slider-checkbox">
-        <input type="checkbox"<%= ' checked=1' if team.active? %>>
+<!--        <input type="checkbox"<%#= ' checked=1' if team.active? %>>-->
+        <%= check_box_tag 'active', team.id, team.active?,
+                          data: {
+                              remote: true,
+                              url: toggle_team_path(team.id),
+                              method: 'POST'
+                          } %>
         <label class="label"></label>
       </section>
     </div>

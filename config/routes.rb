@@ -4,7 +4,11 @@ Rails.application.routes.draw do
   resources :tournaments, path: '', only: %i[index]
 
   resources :tournaments, path: 't', except: %i[index] do
-    resources :teams, shallow: true
+    resources :teams, shallow: true do
+      member do
+        post 'toggle'
+      end
+    end
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
