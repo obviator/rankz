@@ -5,7 +5,7 @@ class Team < ApplicationRecord
 
   validates :name, presence: true, length: { minimum: 2, maximum: 20 }, uniqueness: { scope: :tournament }
   validates :tournament_id, presence: true
-  validates :race_id, presence: true
+  # validates :race_id, presence: true
 
   def active?
     active&.positive?
