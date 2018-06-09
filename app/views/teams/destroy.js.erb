@@ -1,0 +1,7 @@
+$modal = $('.modal');
+$modal.modal('hide');
+$('#team_row_<%= @team.id %>').addClass('animated fadeOutLeft');
+window.setTimeout(function(){$('#team_row_<%= @team.id %>').remove();}, 800);
+
+$.notify('<%= j flash[:notice] %>');
+

@@ -1,6 +1,6 @@
 class TeamsController < ApplicationController
   before_action :set_tournament, only: %i[index new create]
-  before_action :set_team, only: %i[edit update toggle]
+  before_action :set_team, only: %i[edit update toggle destroy]
 
   def index
     @teams = @tournament.teams.order(:created_at)
@@ -39,8 +39,17 @@ class TeamsController < ApplicationController
     end
   end
 
-  def toggle
+  def destroy
+    respond_to do |format|
+      if @team.destroy
+        format.js { flash.now[:notice] = 'Deleted' }
+      else
+        format.js { render action: 'edit' }
+      end
+    end
+  end
 
+  def toggle
     respond_to do |format|
       @team.active = @team.active.to_i * -1 + 1
       if @team.save
