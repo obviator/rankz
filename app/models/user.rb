@@ -43,4 +43,9 @@ class User < ApplicationRecord
       where(conditions.to_hash).first
     end
   end
+
+  # Send emails as ActiveJob queue instead of waiting for response
+  def send_devise_notification(notification, *args)
+    devise_mailer.send(notification, self, *args).deliver_later
+  end
 end
