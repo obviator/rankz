@@ -23,14 +23,24 @@ $unchecked-color: #888;
     &:checked + .label {
       &:before {
         background-color: $checked-color;
-        content: "\f00c";
+        content: "";
         padding-left: 6px;
       }
       &:after {
         left: 21px;
       }
     }
+    &:disabled + .label {
+      &:before {
+        content: "\f023";
+        cursor: not-allowed;
+      }
+      &:after {
+        cursor: not-allowed;
+      }
+    }
   }
+
   .label {
     position: relative;
     padding-left: 46px;
@@ -42,7 +52,7 @@ $unchecked-color: #888;
       transition: background-color 0.3s, left 0.3s;
     }
     &:before {
-      content: "\f00d";
+      content: "";
       color: #fff;
       box-sizing: border-box;
       font-family: 'FontAwesome', sans-serif;
@@ -68,4 +78,5 @@ $unchecked-color: #888;
       width: 18px;
     }
   }
+
 }
