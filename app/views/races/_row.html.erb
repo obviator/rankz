@@ -5,14 +5,15 @@
   <td>
     <div class="form-check">
       <section class="slider-checkbox">
-        <!--        <input type="checkbox"<%#= ' checked=1' if race.active? %>>-->
-        <%= check_box_tag 'active', race.id, race.active?,
+        <%= check_box_tag "active_#{race.id}", race.id, race.active?,
+                          disabled: race.locked? ? true : false,
+                          title: race.locked? ? 'In use' : '',
                           data: {
                               remote: true,
                               url: toggle_race_path(race.id),
                               method: 'POST'
                           } %>
-        <label class="label"></label>
+        <label class="label" for="active_<%= race.id %>" title="<%= race.locked? ? 'In use' : '' %>"></label>
       </section>
     </div>
   </td>
