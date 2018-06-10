@@ -11,5 +11,5 @@ $modalFooter.html('<div class="mr-auto"><%= j link_to "Delete",
                                   class: "btn btn-danger pull-left",
                                   data: { confirm: "Are you sure?" } %></div>');
 $modalFooter.append('<input type="submit" value="Submit" form="edit_team_<%= @team.id %>" class="btn btn-primary">');
-$modalBody.html('<%= j render("form", races: @team.tournament.races) %>');
+$modalBody.html('<%= j render("form", races: @team.races) %>');
 $modal.modal();
