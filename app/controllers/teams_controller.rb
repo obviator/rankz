@@ -51,8 +51,7 @@ class TeamsController < ApplicationController
 
   def toggle
     respond_to do |format|
-      @team.active = @team.active.to_i * -1 + 1
-      if @team.save
+      if @team.toggle
         format.js { flash.now[:notice] = 'Saved' }
       else
         format.js do

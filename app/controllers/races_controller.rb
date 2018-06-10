@@ -51,8 +51,7 @@ class RacesController < ApplicationController
 
   def toggle
     respond_to do |format|
-      @race.active = @race.active.to_i * -1 + 1
-      if @race.save
+      if @race.toggle
         format.js { flash.now[:notice] = 'Saved' }
       else
         format.js do

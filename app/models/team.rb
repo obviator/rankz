@@ -1,4 +1,3 @@
-
 class Team < ApplicationRecord
   belongs_to :tournament
   belongs_to :race
@@ -11,7 +10,12 @@ class Team < ApplicationRecord
     active&.positive?
   end
 
-  def races
-    tournament.races.where("COALESCE(active,0) > 0")
+  def toggle
+    self.active = if active.to_i.zero?
+                    1
+                  else
+                    0
+                  end
+    save
   end
 end

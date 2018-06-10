@@ -1,4 +1,3 @@
-
 class Tournament < ApplicationRecord
   resourcify
 
@@ -13,16 +12,19 @@ class Tournament < ApplicationRecord
 
   def slug_candidates
     [
-      :name,
-      [:name, self.start_date.strftime('%y')],
-      [:name, self.start_date.strftime('%Y')],
-      [:name, self.start_date.strftime('%y-%m-%d')],
-      [:name, self.start_date]
+        :name,
+        [:name, self.start_date.strftime('%y')],
+        [:name, self.start_date.strftime('%Y')],
+        [:name, self.start_date.strftime('%y-%m-%d')],
+        [:name, self.start_date]
     ]
   end
 
-
   def self.list
     Tournament.where('active >= ?', 0).order('start_date').all
+  end
+
+  def races!
+    races.where("COALESCE(active,0) > 0")
   end
 end
