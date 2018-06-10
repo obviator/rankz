@@ -10,4 +10,8 @@ class Team < ApplicationRecord
   def active?
     active&.positive?
   end
+
+  def races
+    tournament.races.where("COALESCE(active,0) > 0")
+  end
 end

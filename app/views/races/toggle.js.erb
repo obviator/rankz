@@ -1,0 +1,24 @@
+$('#race_row_<%= @race.id %>').replaceWith('<%= j render "races/row", race: @race %>');
+
+<% if @race.errors.any? %>
+$('#race_row_<%= @race.id %>').find('td').effect('highlight', {color: '#dc3545'}, 2000);
+<% @race.errors.full_messages.each do |msg| %>
+
+$.notify({
+    message: '<%= j msg %>'
+}, {
+    allow_dismiss: true,
+    delay: 0,
+    type: 'danger'
+});
+<% end %>
+$.notify({
+    message: '<%= j flash[:error] %>'
+}, {
+    allow_dismiss: true,
+    delay: 0,
+    type: 'danger'
+});
+<% else %>
+$('#race_row_<%= @race.id %>').find('td').effect('highlight', {color: '#4BADF5'}, 2000);
+<% end %>

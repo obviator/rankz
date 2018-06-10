@@ -1,0 +1,15 @@
+$modal = $('.modal');
+$modalBody = $('.modal .modal-body');
+$modalHeading = $('.modal .modal-header');
+$modalTitle = $('.modal .modal-header .modal-title');
+$modalFooter = $('.modal .modal-footer');
+$modalTitle.html("Edit <%= @race.name %>");
+$modalFooter.html('<div class="mr-auto"><%= j link_to "Delete",
+                                  race_path(@race),
+                                  remote: true,
+                                  method: :delete,
+                                  class: "btn btn-danger pull-left",
+                                  data: { confirm: "Are you sure?" } %></div>');
+$modalFooter.append('<input type="submit" value="Submit" form="edit_race_<%= @race.id %>" class="btn btn-primary">');
+$modalBody.html('<%= j render("form") %>');
+$modal.modal();
