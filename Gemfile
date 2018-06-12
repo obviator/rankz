@@ -62,6 +62,9 @@ gem 'devise', '~> 4.4.3'
 #Best-In-Place AJAX editor
 # gem 'best_in_place', '~> 3.0.3'
 
+# Round number manegement
+gem 'acts_as_list'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
