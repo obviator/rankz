@@ -3,6 +3,7 @@ class Tournament < ApplicationRecord
 
   has_many :teams
   has_many :races
+  has_many :rounds
 
   validates :name, presence: true, length: { minimum: 2, maximum: 20 }, uniqueness: true
   validates :slug, presence: true, length: { minimum: 2, maximum: 20 }, uniqueness: true
@@ -21,10 +22,14 @@ class Tournament < ApplicationRecord
   end
 
   def self.list
-    Tournament.where('active >= ?', 0).order('start_date').all
+    Tournament.where('COALESCE(active,0) > ?', 0).order('start_date')
   end
 
   def races!
-    races.where("COALESCE(active,0) > 0")
+    races.where('COALESCE(active,0) > ?', 0)
+  end
+
+  def teams!
+    teams.where('COALESCE(active,0) > ?', 0)
   end
 end

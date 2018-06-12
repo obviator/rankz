@@ -33,9 +33,9 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="<%= tournament_teams_path(@tournament) %>" class="nav-link nav-teams-index">
-                  <i class="fa fa-users nav-icon"></i>
-                  <p>Teams</p>
+                <a href="<%= edit_tournament_path(@tournament) %>" class="nav-link nav-tournaments-edit">
+                  <i class="fa fa-cogs nav-icon"></i>
+                  <p>Settings</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -45,23 +45,30 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="<%= edit_tournament_path(@tournament) %>" class="nav-link nav-tournaments-edit">
-                  <i class="fa fa-cogs nav-icon"></i>
-                  <p>Settings</p>
+                <a href="<%= tournament_teams_path(@tournament) %>" class="nav-link nav-teams-index">
+                  <i class="fa fa-users nav-icon"></i>
+                  <p>Teams</p>
                 </a>
               </li>
             </ul>
           </li>
+          <% @tournament.rounds.each do |r| %>
+            <li class="nav-item">
+              <%= link_to round_path(r), remote: true, class: 'nav-link' do %>
+                <i class="nav-icon fa fa-gamepad"></i>
+                <p><%= "Round #{r.position}" %></p>
+              <% end %>
+            </li>
+          <% end %>
           <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fa fa-th"></i>
+            <%= link_to new_tournament_round_path(@tournament), remote: true, class: 'nav-link' do %>
+              <i class="nav-icon fa fa-plus-square"></i>
               <p>
-                Simple Link
-                <span class="right badge badge-danger">New</span>
+                <span class="badge badge-danger">New</span>
+                Round
               </p>
-            </a>
-          </li>
-        </ul>
+            <% end %>>
+            </ul>
       <% end %>
     </nav>
     <!-- /.sidebar-menu -->
