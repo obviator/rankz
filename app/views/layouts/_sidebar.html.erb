@@ -54,7 +54,7 @@
           </li>
           <% @tournament.rounds.each do |r| %>
             <li class="nav-item">
-              <%= link_to round_path(r), remote: true, class: 'nav-link' do %>
+              <%= link_to tournament_round_path(id: r.id), remote: false, class: 'nav-link nav-rounds-show' do %>
                 <i class="nav-icon fa fa-gamepad"></i>
                 <p><%= "Round #{r.position}" %></p>
               <% end %>

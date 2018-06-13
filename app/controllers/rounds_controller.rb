@@ -1,5 +1,5 @@
 class RoundsController < ApplicationController
-  before_action :set_tournament, only: %i[index new create]
+  before_action :set_tournament, only: %i[index new create show]
   before_action :set_round, only: %i[show edit update destroy]
 
   def index
@@ -15,15 +15,14 @@ class RoundsController < ApplicationController
   def edit; end
 
   def create
-    @round = Round.new(round_params)
+    @round = Round.new
+    @round.tournament = @tournament
 
     respond_to do |format|
       if @round.save
-        format.html { redirect_to @round, notice: 'Round was successfully created.' }
-        format.json { render :show, status: :created, location: @round }
+        format.js { flash[:notice] = 'Created' }
       else
-        format.html { render :new }
-        format.json { render json: @round.errors, status: :unprocessable_entity }
+        format.js { render action: 'new' }
       end
     end
   end
@@ -54,9 +53,9 @@ class RoundsController < ApplicationController
     @round = Round.find(params[:id])
   end
 
-  def round_params
-    params.require(:round).permit(:position, :tournament_id)
-  end
+  # def round_params
+  #   params.require(:round).permit(:position, :tournament_id)
+  # end
 
   def set_tournament
     @tournament = Tournament.friendly.find(params[:tournament_id])

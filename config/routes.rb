@@ -12,7 +12,7 @@ Rails.application.routes.draw do
         post 'toggle'
       end
     end
-    resources :rounds, shallow: true
+    resources :rounds
   end
 
   resources :tournaments, path: '', only: %i[index]
