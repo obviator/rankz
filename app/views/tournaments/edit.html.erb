@@ -1,6 +1,5 @@
-<h1>Editing Tournament</h1>
-
-<%= render 'form', tournament: @tournament %>
-
-<%= link_to 'Show', @tournament %> |
-<%= link_to 'Back', tournaments_path %>
+<h1>Settings</h1>
+<div class="form">
+  <%= render 'form', tournament: @tournament %>
+</div>
+<%= link_to 'Cancel', request.referer || tournament_teams_path(@tournament) %>

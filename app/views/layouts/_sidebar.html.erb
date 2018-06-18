@@ -7,15 +7,9 @@
 
   <!-- Sidebar -->
   <div class="sidebar">
-    <!--    <!-- Sidebar user panel (optional) -->-->
-    <!--    <div class="user-panel mt-3 pb-3 mb-3 d-flex">-->
-    <!--      <div class="image">-->
-    <!--        <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">-->
-    <!--      </div>-->
-    <!--      <div class="info">-->
-    <!--        <a href="#" class="d-block">Alexander Pierce</a>-->
-    <!--      </div>-->
-    <!--    </div>-->
+    <% if user_signed_in? %>
+       <%= render 'layouts/avatar' %>
+      <% end %>
 
     <!-- Sidebar Menu -->
     <nav class="mt-2">
@@ -54,21 +48,22 @@
           </li>
           <% @tournament.rounds.each do |r| %>
             <li class="nav-item">
-              <%= link_to tournament_round_path(id: r.id), remote: false, class: 'nav-link nav-rounds-show' do %>
+              <%= link_to round_path(id: r.id), remote: false, class: 'nav-link nav-rounds-show' do %>
                 <i class="nav-icon fa fa-gamepad"></i>
                 <p><%= "Round #{r.position}" %></p>
               <% end %>
             </li>
           <% end %>
-          <li class="nav-item">
-            <%= link_to new_tournament_round_path(@tournament), remote: true, class: 'nav-link' do %>
-              <i class="nav-icon fa fa-plus-square"></i>
-              <p>
-                <span class="badge badge-danger">New</span>
-                Round
-              </p>
-            <% end %>>
-            </ul>
+
+            <li class="nav-item<%= ' hide' unless Round.all_complete?(tournament: @tournament) %>" id="nav-new-round">
+              <%= link_to new_tournament_round_path(@tournament), remote: true, class: 'nav-link' do %>
+                <i class="nav-icon fa fa-plus-square"></i>
+                <p>
+                  <span class="badge badge-danger">New</span>
+                  Round
+                </p>
+          <% end %>
+        </ul>
       <% end %>
     </nav>
     <!-- /.sidebar-menu -->

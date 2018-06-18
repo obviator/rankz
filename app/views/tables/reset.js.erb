@@ -1,0 +1,9 @@
+$modal.modal('hide');
+$('#table_row_<%= @table.id %>_5').remove();
+$('#table_row_<%= @table.id %>').replaceWith('<%= j render "rounds/row", table: @table %>');
+$('#table_row_<%= @table.id %>, #table_row_<%= @table.id %>_5').find('td').effect('highlight', {color: '#4BADF5'}, 2000);
+
+$.notify('<%= j flash[:notice] %>');
+
+$('#nav-new-round').hide();
+

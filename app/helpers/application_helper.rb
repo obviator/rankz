@@ -29,5 +29,17 @@ module ApplicationHelper
     end
   end
 
-  nil
+  def gravatar_for(user:, size: 80)
+    gravatar_id = Digest::MD5::hexdigest(user.email.downcase)
+    gravatar_size = size
+    gravatar_url = "https://secure.gravatar.com/avatar/#{gravatar_id}?s=#{gravatar_size}&d=404"
+    image_tag(gravatar_url, alt: user.username, class: "img-circle elevation-2")
+  end
+  def adorable_avatar_for(user:, size: 80)
+    adorable_id = user.username.downcase
+    adorable_size = size
+    adorable_url = "https://api.adorable.io/avatars/#{adorable_size}/#{adorable_id}.png"
+    image_tag(adorable_url, alt: user.username, class: "img-circle elevation-2")
+  end
+
 end

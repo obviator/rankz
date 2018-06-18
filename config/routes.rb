@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
 
+  resources :users
+
   resources :tournaments, path: 't', except: %i[index] do
     resources :teams, shallow: true do
       member do
@@ -12,7 +14,20 @@ Rails.application.routes.draw do
         post 'toggle'
       end
     end
-    resources :rounds
+    resources :rounds, shallow: true do
+      member do
+        post 'populate'
+      end
+      member do
+        post 'reset'
+      end
+      resources :tables, shallow: true do
+        member do
+          post 'reset'
+        end
+        resources :scores, shallow: true
+      end
+    end
   end
 
   resources :tournaments, path: '', only: %i[index]

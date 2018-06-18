@@ -1,0 +1,25 @@
+<tr id="table_row_<%= table.id %>">
+  <th rowspan=2 scope="row" class="text-center align-middle">
+    <%= link_to table.position, edit_table_path(table), remote: true, class: "btn btn#{table.complete? ? '' : '-outline' }-dark btn-lg" %>
+  </th>
+  <% table.scores.each_with_index do |score, i| %>
+    <% unless i == 0 %>
+    <tr id="table_row_<%= table.id %>_5">
+  <% end %>
+  <td>
+    <%= score.team.name %>
+  </td>
+  <td class="text-center">
+    <%= score.td %>
+  </td>
+  <td class="text-center">
+    <%= score.cas %>
+  </td>
+  <td class="text-center">
+    <%= score.score if table.complete? %>
+  </td>
+  <% unless i == 0 %>
+    </tr>
+  <% end %>
+<% end %>
+</tr>

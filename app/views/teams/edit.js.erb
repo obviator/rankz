@@ -1,8 +1,3 @@
-$modal = $('.modal');
-$modalBody = $('.modal .modal-body');
-$modalHeading = $('.modal .modal-header');
-$modalTitle = $('.modal .modal-header .modal-title');
-$modalFooter = $('.modal .modal-footer');
 $modalTitle.html("Edit <%= @team.name %>");
 $modalFooter.html('<div class="mr-auto"><%= j link_to "Delete",
                                   team_path(@team),

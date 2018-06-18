@@ -1,12 +1,17 @@
+# frozen_string_literal: true
+
 class RoundsController < ApplicationController
-  before_action :set_tournament, only: %i[index new create show]
+  before_action :set_tournament, only: %i[index new create]
   before_action :set_round, only: %i[show edit update destroy]
 
   def index
     @rounds = Round.all
   end
 
-  def show; end
+  def show
+    @tournament = @round.tournament
+    @tables = @round.tables.order(:position)
+  end
 
   def new
     @round = Round.new

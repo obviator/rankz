@@ -1,42 +1,52 @@
 <%= form_with(model: tournament, local: true) do |form| %>
-  <% if tournament.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(tournament.errors.count, "error") %> prohibited this tournament from being saved:</h2>
-
-      <ul>
-      <% tournament.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
+  <%= render 'shared/errors', obj: tournament %>
+  <div class="form-group">
     <%= form.label :name %>
-    <%= form.text_field :name %>
+    <%= form.text_field :name, class: "form-control col-lg-4 col-xl-5" %>
   </div>
-
-  <div class="field">
+  <div class="form-group">
     <%= form.label :desc %>
-    <%= form.text_area :desc %>
+    <%= form.text_area :desc, class: "form-control col-lg-4 col-xl-5" %>
+  </div>
+  <div class="form-group">
+    <div class="col-lg-4 m-0 p-0">
+      <div class="row m-0 p-0">
+        <div class="col-lg-5 m-0 p-0">
+          <%= form.label :start_date %>
+          <%= form.date_field :start_date,
+                              min: Date.today,
+                              # value: tournament.start_date.strftime("%d/%m/%Y"),
+                              class: "form-control text-center" %>
+        </div>
+        <div class="col-lg-2 m-0 p-0">
+
+        </div>
+        <div class="col-lg-5 m-0 p-0">
+          <%= form.label :end_date %>
+          <%= form.date_field :end_date,
+                              min: tournament.start_date,
+                              # value: end_date.strftime("%d/%m/%Y"),
+                              class: "form-control text-center" %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= form.label :wincalc, "Win:" %>
+    <%= form.text_field :wincalc, class: "form-control col-lg-4 col-xl-5" %>
+  </div>
+  <div class="form-group">
+    <%= form.label :drawcalc, "Draw:" %>
+    <%= form.text_field :drawcalc, class: "form-control col-lg-4 col-xl-5" %>
+  </div>
+  <div class="form-group">
+    <%= form.label :losecalc, "Loss:" %>
+    <%= form.text_field :losecalc, class: "form-control col-lg-4 col-xl-5" %>
+  </div>
+  <div class="form-group">
+    <%= form.label :concedecalc, "Concede:" %>
+    <%= form.text_field :concedecalc, class: "form-control col-lg-4 col-xl-5" %>
   </div>
 
-<!--  <div class="field">-->
-    <%#= form.label :slug %>
-    <%#= form.text_field :slug %>
-<!--  </div>-->
-
-  <div class="field">
-    <%= form.label :start_date %>
-    <%= form.date_select :start_date %>
-  </div>
-
-<!--  <div class="field">-->
-    <%#= form.label :active %>
-    <%#= form.number_field :active %>
-<!--  </div>-->
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  <%= form.submit class: "btn btn-primary" %>
 <% end %>

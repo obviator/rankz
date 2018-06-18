@@ -13,6 +13,7 @@
 //= require jquery/dist/jquery
 //= require jquery-ui-bundle/jquery-ui
 //= require jquery-ui/ui/effects/effect-highlight
+//= require jquery-ui/ui/widgets/datepicker
 //= require rails-ujs
 //= require bootstrap/dist/js/bootstrap
 //= require activestorage

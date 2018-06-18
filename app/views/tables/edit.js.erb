@@ -1,0 +1,12 @@
+$modalTitle.html("Table <%= @table.position %>");
+$modalTitle.addClass("text-center m-auto");
+
+$modalFooter.html('<div class="mr-auto"><%= j link_to "Reset",
+                                  reset_table_path(@table),
+                                  remote: true,
+                                  method: :post,
+                                  class: "btn btn-danger pull-left",
+                                  data: { confirm: "Are you sure?" } %></div>');
+$modalFooter.append('<input type="submit" value="Submit" form="edit_table_<%= @table.id %>" class="btn btn-primary">');
+$modalBody.html('<%= j render("form") %>');
+$modal.modal();

@@ -1,4 +1,3 @@
-$modal = $('.modal');
 $modal.modal('hide');
 $('#race_row_<%= @race.id %>').addClass('animated fadeOutLeft');
 window.setTimeout(function(){$('#race_row_<%= @race.id %>').remove();}, 800);

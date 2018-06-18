@@ -51,6 +51,9 @@ gem 'friendly_id', '~> 5.2.0'
 # User roles management
 gem 'rolify', '~> 5.2.0'
 
+# Authorisation management
+gem 'pundit'
+
 # User registration management
 gem 'devise', '~> 4.4.3'
 
@@ -64,6 +67,9 @@ gem 'devise', '~> 4.4.3'
 
 # Round number manegement
 gem 'acts_as_list'
+
+# Dentaku
+gem 'dentaku'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

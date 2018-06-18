@@ -1,19 +1,46 @@
+# frozen_string_literal: true
+
 class Round < ApplicationRecord
   belongs_to :tournament
+  has_many :tables
+  delegate :wincalc, :concedecalc, :losecalc, :drawcalc, to: :tournament, allow_nil: true
+  delegate :start_date, :end_date, to: :tournament
   acts_as_list scope: :tournament
 
-  validate :even_teams,
-           :previous_rounds_complete
+  validate :even_teams?
+  validate :all_rounds_complete?, on: :create
 
-  def even_teams
+  def complete?
+    return false unless tables.any?
+    tables.each do |table|
+      return false unless table.complete?
+    end
+    true
+  end
+
+  def self.all_complete?(tournament:)
+    where('tournament_id = ?', tournament).all.each do |round|
+      return false unless round.complete?
+    end
+    true
+  end
+
+  def self.any_complete?(tournament:)
+    where('tournament_id = ?', tournament).all.each do |round|
+      return true if round.complete?
+    end
+    false
+  end
+
+  private
+
+  def even_teams?
     if tournament.teams!.count.odd?
       errors.add(tournament.name, 'has an odd number of active teams.')
     end
   end
 
-  def previous_rounds_complete
-    if false
-      errors.add(tournament.name, 'has an incomplete round')
-    end
+  def all_rounds_complete?
+    errors.add(tournament.name, 'has incomplete rounds.') unless Round.all_complete?(tournament: tournament)
   end
 end

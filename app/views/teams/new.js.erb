@@ -1,9 +1,3 @@
-
-$modal = $('.modal');
-$modalBody = $('.modal .modal-body');
-$modalHeading = $('.modal .modal-header');
-$modalTitle = $('.modal .modal-header .modal-title');
-$modalFooter = $('.modal .modal-footer');
 $modalTitle.html("Create team");
 $modalFooter.html('<input type="submit" value="Submit" form="new_team" class="btn btn-primary">');
 $modalBody.html('<%= j render("form", races: @tournament.races! ) %>');

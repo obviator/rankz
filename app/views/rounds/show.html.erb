@@ -1,1 +1,22 @@
-<h1>Round <%= @round.position %></h1>
+<div class="page-header m-3">
+  <h1>Round <%= @round.position %></h1>
+</div>
+
+<div class="table-responsive-lg m-xl-4 m-lg-4 m-sm-1 m-xs-1">
+  <table class="table table-sm table-striped-couplets table-bordered" id="teams-list">
+    <thead class="thead-light">
+    <tr>
+      <th scope="col">Table</th>
+      <th scope="col">Team</th>
+      <th scope="col">Touchdowns</th>
+      <th scope="col">Casualties</th>
+      <th scope="col">Score</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @tables.each do |table| %>
+      <%= render 'rounds/row', table: table %>
+    <% end %>
+    </tbody>
+  </table>
+</div>

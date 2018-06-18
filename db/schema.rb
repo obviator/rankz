@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_11_094327) do
+ActiveRecord::Schema.define(version: 2018_06_15_103557) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,26 @@ ActiveRecord::Schema.define(version: 2018_06_11_094327) do
     t.index ["tournament_id"], name: "index_rounds_on_tournament_id"
   end
 
+  create_table "scores", force: :cascade do |t|
+    t.bigint "table_id"
+    t.bigint "team_id"
+    t.integer "td"
+    t.integer "cas"
+    t.boolean "concede", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["table_id"], name: "index_scores_on_table_id"
+    t.index ["team_id"], name: "index_scores_on_team_id"
+  end
+
+  create_table "tables", force: :cascade do |t|
+    t.integer "position"
+    t.bigint "round_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["round_id"], name: "index_tables_on_round_id"
+  end
+
   create_table "teams", force: :cascade do |t|
     t.string "name"
     t.bigint "tournament_id"
@@ -75,6 +95,11 @@ ActiveRecord::Schema.define(version: 2018_06_11_094327) do
     t.integer "active", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "wincalc"
+    t.string "losecalc"
+    t.string "drawcalc"
+    t.string "concedecalc"
+    t.date "end_date"
     t.index ["slug"], name: "index_tournaments_on_slug", unique: true
   end
 
@@ -112,6 +137,9 @@ ActiveRecord::Schema.define(version: 2018_06_11_094327) do
 
   add_foreign_key "races", "tournaments"
   add_foreign_key "rounds", "tournaments"
+  add_foreign_key "scores", "tables"
+  add_foreign_key "scores", "teams"
+  add_foreign_key "tables", "rounds"
   add_foreign_key "teams", "races"
   add_foreign_key "teams", "tournaments"
 end

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  table: one
+  team: one
+  td: 1
+  cas: 1
+  concede?: false
+
+two:
+  table: two
+  team: two
+  td: 1
+  cas: 1
+  concede?: false
