@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class Score < ApplicationRecord
-  belongs_to :table
-  belongs_to :team
+  belongs_to :table, inverse_of: :scores
+  belongs_to :team, inverse_of: :scores
   delegate :wincalc, :concedecalc, :losecalc, :drawcalc,
            to: :table,
            allow_nil: true
@@ -16,6 +16,8 @@ class Score < ApplicationRecord
                                   greater_than_or_equal_to: 0,
                                   less_than_or_equal_to: 32,
                                   allow_nil: true }
+  validates_presence_of :team
+  validates_presence_of :table
 
   def score
     calc_store

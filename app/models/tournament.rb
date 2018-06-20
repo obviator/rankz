@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 class Tournament < ApplicationRecord
-  has_many :teams
+  has_many :teams, dependent: :restrict_with_error
   has_many :races
-  has_many :rounds
+  has_many :rounds, dependent: :restrict_with_error
 
   resourcify
 

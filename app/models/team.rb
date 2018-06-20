@@ -3,7 +3,7 @@
 class Team < ApplicationRecord
   belongs_to :tournament
   belongs_to :race
-  has_many :scores
+  has_many :scores, dependent: :restrict_with_error
 
   resourcify
 
