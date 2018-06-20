@@ -2,9 +2,12 @@
 
 class Round < ApplicationRecord
   belongs_to :tournament
-  has_many :tables
+  has_many :tables, dependent: :destroy, inverse_of: :round
+  after_create :populate
+
   delegate :wincalc, :concedecalc, :losecalc, :drawcalc, to: :tournament, allow_nil: true
   delegate :start_date, :end_date, to: :tournament
+  delegate :teams!, to: :tournament
   acts_as_list scope: :tournament
 
   validate :even_teams?
@@ -42,5 +45,16 @@ class Round < ApplicationRecord
 
   def all_rounds_complete?
     errors.add(tournament.name, 'has incomplete rounds.') unless Round.all_complete?(tournament: tournament)
+  end
+
+  def populate
+    table = Table.new
+    teams!.each_with_index do |team, i|
+      table = Table.new if i.even?
+      table.round = self
+      throw :abort unless table.save
+      score = Score.new(table: table, team: team)
+      throw :abort unless score.save
+    end
   end
 end
