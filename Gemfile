@@ -86,6 +86,8 @@ group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'web-console', '>= 3.3.0'
   gem 'rails_real_favicon'
+  # Monitor file changes on windows (for Guard)
+  gem 'wdm', '>= 0.1.0' if Gem.win_platform?
 end
 
 group :test do
@@ -96,7 +98,7 @@ group :test do
   gem 'chromedriver-helper'
 
   # watches your application and tests and runs specs for you automatically when it detects changes.
-  gem 'guard-rspec'
+  gem 'guard-rspec', require: false
   # opens your default web browser upon failed integration specs to show you what your application is rendering.
   gem 'launchy'
 end
