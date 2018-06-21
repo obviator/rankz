@@ -6,8 +6,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   # Ignore whitespace and case on email
-  before_validation { self.email = email.downcase.strip }
-  before_validation { self.username = username.strip }
+  before_validation { self.email = email.try(:downcase).try(:strip) }
+  before_validation { self.username = username.try(:strip) }
 
   # Usernames should be uniqe, regardless of case
   validates :username,
@@ -23,7 +23,7 @@ class User < ApplicationRecord
   # Username should not be someone else's email address
   validate :validate_username
   def validate_username
-    if User.where(email: username.downcase.strip).exists?
+    if User.where(email: username.try(:downcase).try(:strip)).exists?
       errors.add(:username, :invalid)
     end
   end
