@@ -56,27 +56,31 @@ class Tournament < ApplicationRecord
   end
 
   def calcs_changed?
-    wincalc_changed? || losecalc_changed? || drawcalc_changed? || concedecalc_changed?
+    wincalc_changed? || \
+    losecalc_changed? || \
+    drawcalc_changed? || \
+    concedecalc_changed?
   end
 
   def start_date_in_future
-    errors.add :start_date, 'Cannot be in the past.' if start_date < Date.today
+    errors.add :start_date, 'Cannot be in the past.' \
+    if (start_date || Date.tomorrow) < Date.today
   end
 
   def end_after_start
     return if end_date.nil?
-    if end_date < start_date
+    if end_date < (start_date || Date.tomorrow)
       errors.add(:end_date, 'cannot be before start.')
     end
   end
 
   def slug_candidates
     [
-      :name,
-      [:name, start_date.strftime('%y')],
-      [:name, start_date.strftime('%Y')],
-      [:name, start_date.strftime('%y-%m-%d')],
-      [:name, start_date]
+        :name,
+        [:name, start_date.strftime('%y')],
+        [:name, start_date.strftime('%Y')],
+        [:name, start_date.strftime('%y-%m-%d')],
+        [:name, start_date]
     ]
   end
 end

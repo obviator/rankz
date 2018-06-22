@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # A sample Guardfile
 # More info at https://github.com/guard/guard#readme
 
@@ -24,10 +26,10 @@
 #  * zeus: 'zeus rspec' (requires the server to be started separately)
 #  * 'just' rspec: 'rspec'
 
-# guard :rspec, cmd: "bundle exec rspec" do
+guard :rspec, cmd: 'bundle exec rspec' do
 
-guard :rspec, cmd: 'rspec -f html -o ./tmp/spec_results.html', launchy: './tmp/spec_results.html' do
-  require "guard/rspec/dsl"
+# guard :rspec, cmd: 'rspec -f html -o ./tmp/spec_results.html', launchy: './tmp/spec_results.html' do
+  require 'guard/rspec/dsl'
   dsl = Guard::RSpec::Dsl.new(self)
 
   # Feel free to open issues for suggestions and improvements
@@ -42,8 +44,15 @@ guard :rspec, cmd: 'rspec -f html -o ./tmp/spec_results.html', launchy: './tmp/s
   ruby = dsl.ruby
   dsl.watch_spec_files_for(ruby.lib_files)
 
+  # Watch factories
+  begin
+    require 'active_support/inflector'
+    watch(%r{^spec/factories/(.+)_factory\.rb$}) { |m| ["app/models/#{m[1].singularize}.rb", "spec/models/#{m[1].singularize}_spec.rb"] }
+  rescue LoadError
+  end
+
   # Rails files
-  rails = dsl.rails(view_extensions: %w(erb haml slim))
+  rails = dsl.rails(view_extensions: %w[erb haml slim])
   dsl.watch_spec_files_for(rails.app_files)
   dsl.watch_spec_files_for(rails.views)
 
