@@ -4,6 +4,10 @@ class TournamentPolicy < ApplicationPolicy
     user.has_role?(:to, record) || super
   end
 
+  def create?
+    user.has_role?(:to, record) || super
+  end
+
   class Scope < Scope
     def resolve
       scope

@@ -13,6 +13,7 @@ class TournamentsController < ApplicationController
 
   def new
     @tournament = Tournament.new
+    authorize @tournament
   end
 
   def edit
@@ -21,6 +22,7 @@ class TournamentsController < ApplicationController
 
   def create
     @tournament = Tournament.new(tournament_params)
+    authorize @tournament
 
     if @tournament.save
       current_user.add_role :to, @tournament

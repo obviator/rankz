@@ -28,6 +28,10 @@
 
 # Ignore IDE specific files
 .idea
+
+# Ignore RSPEC tempfile
+/spec/example.txt
+
 /public/packs
 /public/packs-test
 /node_modules
