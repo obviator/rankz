@@ -10,6 +10,10 @@ class Tournament < ApplicationRecord
   validates :name, presence: true, length: { minimum: 2, maximum: 20 }, uniqueness: true
   validates :slug, presence: true, length: { minimum: 2, maximum: 20 }, uniqueness: true
   validates :start_date, presence: true
+  validates :wincalc, presence: true
+  validates :drawcalc, presence: true
+  validates :losecalc, presence: true
+  validates :concedecalc, presence: true
 
   validate :start_date_in_future, on: :create
   validate :end_after_start
