@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe Tournament do
-  let(:tournament) { build(:tournament) }
+  let!(:tournament) { create(:tournament) }
 
   describe 'factory' do
     it 'is valid' do
@@ -39,6 +39,45 @@ describe Tournament do
       tournament.end_date = tournament.start_date
       expect(tournament).to be_valid
       tournament.end_date = tournament.start_date + 1
+      expect(tournament).to be_valid
+    end
+  end
+  describe '#name' do
+    it 'exists' do
+      tournament.name = nil
+      expect(tournament).not_to be_valid
+      tournament.name = ''
+      expect(tournament).not_to be_valid
+    end
+    it 'is unique' do
+      expect(build(:tournament, slug: 'NewTournament')).not_to be_valid
+    end
+    it 'is correct length' do
+      tournament.name = 'a' * 1
+      expect(tournament).not_to be_valid
+      tournament.name = 'a' * 21
+      expect(tournament).not_to be_valid
+      tournament.name = 'a' * 15
+      expect(tournament).to be_valid
+    end
+  end
+  describe '#slug' do
+    it 'exists' do
+      expect { tournament.update_column(:slug, nil) }.to raise_error
+    end
+    it 'is not blank' do
+      tournament.slug = ''
+      expect(tournament).not_to be_valid
+    end
+    it 'is unique' do
+      expect(build(:tournament, name: 'NewTournament')).not_to be_valid
+    end
+    it 'is correct length' do
+      tournament.name = 'a' * 1
+      expect(tournament).not_to be_valid
+      tournament.name = 'a' * 21
+      expect(tournament).not_to be_valid
+      tournament.name = 'a' * 15
       expect(tournament).to be_valid
     end
   end

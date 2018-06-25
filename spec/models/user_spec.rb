@@ -1,14 +1,50 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe User do
-  it 'has a valid factory' do
-    expect(create(:user)).to be_valid
+  let!(:user) { create(:user) }
+  describe 'factory' do
+    it 'is valid' do
+      expect(user).to be_valid
+    end
   end
-  it 'is invalid without username' do
-    expect(FactoryBot.build(:user, username: nil)).not_to be_valid
+  describe '#username' do
+    it 'is present' do
+      user.username = nil
+      expect(user).not_to be_valid
+      user.username = ''
+      expect(user).not_to be_valid
+    end
+    it 'is unique' do
+      expect(build(:user, email: 'NewUser@mail.com')).not_to be_valid
+      expect(build(:user, email: user.username)).not_to be_valid
+    end
+    it 'is correct length' do
+      user.username = 'a' * 2
+      expect(user).not_to be_valid
+      user.username = 'a' * 21
+      expect(user).not_to be_valid
+      user.username = 'a' * 15
+      expect(user).to be_valid
+    end
   end
-  it 'is invalid without email' do
-    expect(FactoryBot.build(:user, email: nil)).not_to be_valid
+  describe '#email' do
+    it 'is present' do
+      user.email = nil
+      expect(user).not_to be_valid
+    end
+    it 'is unique' do
+      expect(build(:user, username: 'NewUser')).not_to be_valid
+      expect(build(:user, username: user.email)).not_to be_valid
+    end
   end
-  it "returns a contact's full name as a string"
+  describe 'roles' do
+    describe '#add_role' do
+      it 'adds role' do
+        user.add_role :admin
+        expect(user.has_role?(:admin)).to be_truthy
+      end
+    end
+  end
 end

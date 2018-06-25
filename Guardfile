@@ -26,9 +26,11 @@
 #  * zeus: 'zeus rspec' (requires the server to be started separately)
 #  * 'just' rspec: 'rspec'
 
-guard :rspec, cmd: 'bundle exec rspec' do
+# guard :rspec, cmd: 'bundle exec rspec' do
 
-# guard :rspec, cmd: 'rspec -f html -o ./tmp/spec_results.html', launchy: './tmp/spec_results.html' do
+guard :rspec, cmd: 'rspec -f html -o ./tmp/spec_results.html' do
+  # launchy: File.dirname(__FILE__) + '/tmp/spec_results.html'
+  #
   require 'guard/rspec/dsl'
   dsl = Guard::RSpec::Dsl.new(self)
 
