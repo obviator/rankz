@@ -27,11 +27,11 @@ class Tournament < ApplicationRecord
     Tournament.where('COALESCE(active,0) > ?', 0).order('start_date')
   end
 
-  def races!
+  def active_races
     races.where('COALESCE(active,0) > ?', 0)
   end
 
-  def teams!
+  def active_teams
     teams.where('COALESCE(active,0) > ?', 0)
   end
 
