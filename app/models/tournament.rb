@@ -17,6 +17,7 @@ class Tournament < ApplicationRecord
 
   validate :start_date_in_future, on: :create
   validate :end_after_start
+  validate :must_have_owner, on: :update
 
   validate :lock_calcs
 
@@ -51,7 +52,27 @@ class Tournament < ApplicationRecord
     false
   end
 
+  def owner=(user)
+    clear_owner
+    user.add_role(:owner, self) unless user.nil?
+  end
+
+  def owner
+    roles.each do |role|
+      return role.users.first if role.name = 'owner'
+    end
+    nil
+  end
+
   private
+
+  def clear_owner
+    roles.where(name: 'owner').each do |role|
+      role.users.each do |usr|
+        usr.remove_role(:owner, self)
+      end
+    end
+  end
 
   def lock_calcs
     if calcs_changed? && Round.any_complete?(tournament: self)
@@ -86,5 +107,9 @@ class Tournament < ApplicationRecord
         [:name, start_date.strftime('%y-%m-%d')],
         [:name, start_date]
     ]
+  end
+
+  def must_have_owner
+    errors.add(:owner, 'must exist.') if owner.nil?
   end
 end

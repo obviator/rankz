@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 describe Tournament do
-  let!(:tournament) { create(:tournament) }
+  let!(:owner) { create(:owner) }
+  let!(:tournament) { create(:tournament, owner: owner) }
 
   describe 'factory' do
     it 'is valid' do
@@ -63,7 +64,7 @@ describe Tournament do
   end
   describe '#slug' do
     it 'exists' do
-      expect { tournament.update_column(:slug, nil) }.to raise_error
+      expect { tournament.update_column(:slug, nil) }.to raise_error(ActiveRecord::NotNullViolation)
     end
     it 'is not blank' do
       tournament.slug = ''
@@ -79,6 +80,12 @@ describe Tournament do
       expect(tournament).not_to be_valid
       tournament.name = 'a' * 15
       expect(tournament).to be_valid
+    end
+  end
+  describe '#owner' do
+    it 'must exist' do
+      tournament.owner = nil
+      expect(tournament).not_to be_valid
     end
   end
 end
