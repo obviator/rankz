@@ -54,7 +54,7 @@ class Tournament < ApplicationRecord
 
   def owner=(user)
     clear_owner
-    user.add_role(:owner, self) unless user.nil?
+    user.add_role(:owner, self) if user.respond_to?(:has_role)
   end
 
   def owner
