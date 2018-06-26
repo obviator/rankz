@@ -97,6 +97,8 @@ group :test do
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
 
+  gem 'faker'
+
   # watches your application and tests and runs specs for you automatically when it detects changes.
   gem 'guard-rspec', require: false
   # opens your default web browser upon failed integration specs to show you what your application is rendering.
