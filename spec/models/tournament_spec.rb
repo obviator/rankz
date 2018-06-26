@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 describe Tournament do
-  let!(:owner) { create(:owner) }
-  let!(:tournament) { create(:tournament, owner: owner) }
+  let(:owner) { create(:owner) }
+  let(:tournament) { create(:tournament, owner: owner) }
 
   describe 'factory' do
     it 'is valid' do
@@ -51,6 +51,7 @@ describe Tournament do
       expect(tournament).not_to be_valid
     end
     it 'is unique' do
+      tournament.save
       expect(build(:tournament, slug: 'NewTournament')).not_to be_valid
     end
     it 'is correct length' do
@@ -71,6 +72,7 @@ describe Tournament do
       expect(tournament).not_to be_valid
     end
     it 'is unique' do
+      tournament.save
       expect(build(:tournament, name: 'NewTournament')).not_to be_valid
     end
     it 'is correct length' do
@@ -86,6 +88,10 @@ describe Tournament do
     it 'must exist' do
       tournament.owner = nil
       expect(tournament).not_to be_valid
+    end
+    it 'should get replaced' do
+      tournament.owner = create(:user)
+      expect(tournament.owner).not_to eq owner
     end
   end
 end
