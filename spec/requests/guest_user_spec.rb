@@ -1,4 +1,6 @@
-require "rails_helper"
+# frozen_string_literal: true
+
+require 'rails_helper'
 
 describe 'Guest' do
   it 'is denied tournaments#new' do
@@ -9,9 +11,9 @@ describe 'Guest' do
   let(:tournament_attributes) { FactoryBot.attributes_for(:tournament) }
 
   it 'is denied tournaments#create' do
-    expect {
+    expect do
       post tournaments_path, params: { tournament: tournament_attributes }
-    }.to_not change(Tournament, :count)
+    end.to_not change(Tournament, :count)
 
     expect(response).to redirect_to new_user_session_url
   end
