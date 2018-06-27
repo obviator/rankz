@@ -85,13 +85,24 @@ describe Tournament do
     end
   end
   describe '#owner' do
-    it 'must exist' do
+    it 'returns owner' do
+      expect(tournament.owner).to eq owner
+    end
+    it 'returns a user' do
+      expect(tournament.owner).to respond_to(:has_role?)
+      expect(tournament.owner.class.name).to eq 'User'
+    end
+  end
+  describe '#owner=' do
+    let(:owner2) { create(:owner) }
+    it 'can set nil' do
       tournament.owner = nil
       expect(tournament).not_to be_valid
     end
-    it 'should get replaced' do
-      tournament.owner = create(:user)
+    it 'can set new owner' do
+      tournament.owner = owner2
       expect(tournament.owner).not_to eq owner
+      expect(tournament.owner).to eq owner2
     end
   end
 end
