@@ -17,7 +17,7 @@ describe User do
       expect(user).not_to be_valid
     end
     it 'is unique' do
-      expect(build(:user, email: 'NewUser@mail.com')).not_to be_valid
+      expect(build(:user, email: user.email)).not_to be_valid
       expect(build(:user, email: user.username)).not_to be_valid
     end
     it 'is correct length' do
@@ -35,7 +35,7 @@ describe User do
       expect(user).not_to be_valid
     end
     it 'is unique' do
-      expect(build(:user, username: 'NewUser')).not_to be_valid
+      expect(build(:user, username: user.username)).not_to be_valid
       expect(build(:user, username: user.email)).not_to be_valid
     end
   end
