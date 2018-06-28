@@ -5,8 +5,9 @@ FactoryBot.define do
     start_date Date.today + 7
     end_date Date.today + 8
 
-    name 'tournament name 1'
-    slug 'slug'
+    name { Faker::StarWars.unique.planet }
+    desc { Faker::StarWars.quote }
+    # slug 'slug'
     active 1
     wincalc '9+min(3,tf)+min(3,cf)'
     drawcalc '3+min(3,tf)+min(3,cf)'

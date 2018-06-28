@@ -51,8 +51,7 @@ describe Tournament do
       expect(tournament).not_to be_valid
     end
     it 'is unique' do
-      tournament.save
-      expect(build(:tournament, slug: 'NewTournament')).not_to be_valid
+      expect(build(:tournament, slug: tournament.slug)).not_to be_valid
     end
     it 'is correct length' do
       tournament.name = 'a' * 1
@@ -72,8 +71,7 @@ describe Tournament do
       expect(tournament).not_to be_valid
     end
     it 'is unique' do
-      tournament.save
-      expect(build(:tournament, name: 'NewTournament')).not_to be_valid
+      expect(build(:tournament, name: tournament.name)).not_to be_valid
     end
     it 'is correct length' do
       tournament.name = 'a' * 1
@@ -95,11 +93,11 @@ describe Tournament do
   end
   describe '#owner=' do
     let(:owner2) { create(:owner) }
-    it 'can set nil' do
+    it 'is invalid if nil' do
       tournament.owner = nil
       expect(tournament).not_to be_valid
     end
-    it 'can set new owner' do
+    it 'sets new owner' do
       tournament.owner = owner2
       expect(tournament.owner).not_to eq owner
       expect(tournament.owner).to eq owner2

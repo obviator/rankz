@@ -1,10 +1,14 @@
 require 'rails_helper'
 
-feature 'Admin creates product' do
-  given!(:tournament) { build(:tournament) }
-  given!(:admin) { create(:admin) }
+feature 'Admin creates tournament' do
+  given(:tournament) { build(:tournament) }
+  given(:admin) { create(:user) }
 
   scenario 'with valid input', js: true do
+  # window = page.driver.browser.manage.window
+  # window.position = ActiveRecord::Point.new(-2000, 0)
+  # window.maximize
+    page.driver.browser.manage.window.maximize
     sign_in admin
     visit new_tournament_path
     fill_in 'tournament[name]', with: tournament.name

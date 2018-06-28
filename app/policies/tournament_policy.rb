@@ -1,11 +1,11 @@
 class TournamentPolicy < ApplicationPolicy
 
   def update?
-    user.has_role?(:to, record) || super
+    user.has_role?(:owner, record) || super
   end
 
   def create?
-    user.has_role?(:to, record) || super
+    user.has_role?(:coach, record) || super
   end
 
   class Scope < Scope

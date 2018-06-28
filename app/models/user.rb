@@ -1,5 +1,10 @@
 class User < ApplicationRecord
   rolify #strict: true
+
+  after_create :assign_default_role
+
+
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -47,5 +52,11 @@ class User < ApplicationRecord
   # Send emails as ActiveJob queue instead of waiting for response
   def send_devise_notification(notification, *args)
     devise_mailer.send(notification, self, *args).deliver_later
+  end
+
+  private
+
+  def assign_default_role
+    self.add_role(:coach) if self.roles.blank?
   end
 end

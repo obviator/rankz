@@ -40,6 +40,10 @@ describe User do
     end
   end
   describe 'roles' do
+    it 'has default role' do
+      expect(user.has_role? :coach).to be_truthy
+      expect(user.roles.count == 1).to be_truthy
+    end
     describe '#add_role' do
       it 'adds role' do
         user.add_role :admin
