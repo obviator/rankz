@@ -1,4 +1,4 @@
 $modalTitle.html("Create team");
 $modalFooter.html('<input type="submit" value="Submit" form="new_team" class="btn btn-primary">');
-$modalBody.html('<%= j render("form", races: @tournament.races! ) %>');
+$modalBody.html('<%= j render("form", races: @tournament.active_races ) %>');
 $modal.modal();

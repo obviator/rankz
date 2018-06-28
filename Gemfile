@@ -74,12 +74,20 @@ gem 'dentaku'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+
+  # RSpec
+  gem 'rspec-rails', '~> 3.7'
+
+  # replaces Rails' default fixtures
+  gem 'factory_bot_rails', '~> 4.0'
 end
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'web-console', '>= 3.3.0'
   gem 'rails_real_favicon'
+  # Monitor file changes on windows (for Guard)
+  gem 'wdm', '>= 0.1.0' if Gem.win_platform?
 end
 
 group :test do
@@ -88,6 +96,14 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
+
+  # Generate random unique data for testing
+  gem 'faker'
+
+  # watches your application and tests and runs specs for you automatically when it detects changes.
+  gem 'guard-rspec', require: false
+  # opens your default web browser upon failed integration specs to show you what your application is rendering.
+  gem 'launchy'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

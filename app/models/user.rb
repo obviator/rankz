@@ -1,13 +1,18 @@
 class User < ApplicationRecord
   rolify #strict: true
+
+  after_create :assign_default_role
+
+
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   # Ignore whitespace and case on email
-  before_validation { self.email = email.downcase.strip }
-  before_validation { self.username = username.strip }
+  before_validation { self.email = email.try(:downcase).try(:strip) }
+  before_validation { self.username = username.try(:strip) }
 
   # Usernames should be uniqe, regardless of case
   validates :username,
@@ -23,7 +28,7 @@ class User < ApplicationRecord
   # Username should not be someone else's email address
   validate :validate_username
   def validate_username
-    if User.where(email: username.downcase.strip).exists?
+    if User.where(email: username.try(:downcase).try(:strip)).exists?
       errors.add(:username, :invalid)
     end
   end
@@ -47,5 +52,11 @@ class User < ApplicationRecord
   # Send emails as ActiveJob queue instead of waiting for response
   def send_devise_notification(notification, *args)
     devise_mailer.send(notification, self, *args).deliver_later
+  end
+
+  private
+
+  def assign_default_role
+    self.add_role(:coach) if self.roles.blank?
   end
 end
