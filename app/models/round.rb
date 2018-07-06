@@ -2,7 +2,7 @@
 
 class Round < ApplicationRecord
   belongs_to :tournament
-  has_many :tables
+  has_many :tables, dependent: :destroy
   delegate :wincalc, :concedecalc, :losecalc, :drawcalc, to: :tournament, allow_nil: true
   delegate :start_date, :end_date, to: :tournament
   acts_as_list scope: :tournament
