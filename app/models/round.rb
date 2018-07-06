@@ -2,6 +2,7 @@
 
 class Round < ApplicationRecord
   belongs_to :tournament
+  has_many :tables, dependent: :destroy
   has_many :tables, dependent: :destroy, inverse_of: :round
   after_create :populate
 

@@ -3,6 +3,7 @@
 class Table < ApplicationRecord
   belongs_to :round, inverse_of: :tables
   has_many :scores, dependent: :destroy, inverse_of: :table
+  belongs_to :round
   accepts_nested_attributes_for :scores
   has_many :teams, through: :scores
   delegate :wincalc, :concedecalc, :losecalc, :drawcalc, to: :round, allow_nil: true
