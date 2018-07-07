@@ -38,21 +38,21 @@ class Score < ApplicationRecord
 
   def calc_store
     calculator.store(
-      tf: team.tf.to_i,
-      ta: team.ta.to_i,
-      tn: team.tn.to_i,
-      cf: team.cf.to_i,
-      ca: team.ca.to_i,
-      cn: team.cn.to_i
+      tf: td.to_i,
+      ta: ta.to_i,
+      tn: tn.to_i,
+      cf: cas.to_i,
+      ca: ca.to_i,
+      cn: cn.to_i
     )
   end
 
   def calc
     if concede?
       concedecalc
-    elsif team.tf > team.ta || conceded_against?
+    elsif td > ta || conceded_against?
       wincalc
-    elsif team.tf == team.ta
+    elsif td == ta
       drawcalc
     else
       losecalc
@@ -65,5 +65,21 @@ class Score < ApplicationRecord
 
   def calculator
     @calculator ||= Dentaku::Calculator.new
+  end
+
+  def ta
+    table.scores.where.not(id: id).sum(:td)
+  end
+
+  def tn
+    td - ta
+  end
+
+  def ca
+    table.scores.where.not(id: id).sum(:cas)
+  end
+
+  def cn
+    cas - ca
   end
 end
