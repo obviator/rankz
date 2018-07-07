@@ -8,7 +8,7 @@ class Round < ApplicationRecord
 
   delegate :wincalc, :concedecalc, :losecalc, :drawcalc, to: :tournament, allow_nil: true
   delegate :start_date, :end_date, to: :tournament
-  delegate :teams!, to: :tournament
+  delegate :active_teams, to: :tournament
   acts_as_list scope: :tournament
 
   validate :even_teams?
@@ -50,7 +50,7 @@ class Round < ApplicationRecord
 
   def populate
     table = Table.new
-    teams!.each_with_index do |team, i|
+    active_teams.sorted.each_with_index do |team, i|
       table = Table.new if i.even?
       table.round = self
       throw :abort unless table.save
