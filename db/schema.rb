@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_15_103557) do
+ActiveRecord::Schema.define(version: 2018_07_07_195130) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -100,6 +100,7 @@ ActiveRecord::Schema.define(version: 2018_06_15_103557) do
     t.string "drawcalc"
     t.string "concedecalc"
     t.date "end_date"
+    t.text "tiebreaker"
     t.index ["slug"], name: "index_tournaments_on_slug", unique: true
   end
 
