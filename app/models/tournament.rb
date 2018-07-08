@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Tournament < ApplicationRecord
+  TIEBREAKER_WHITELIST = %w[total_score opponent_score tf ta tn cf ca cn].freeze
   has_many :teams, dependent: :restrict_with_error
   has_many :races
   has_many :rounds, dependent: :restrict_with_error
@@ -34,10 +35,10 @@ class Tournament < ApplicationRecord
     races.where('COALESCE(active,0) > ?', 0)
   end
 
-  def active_teams
-    obj = teams.where('COALESCE(active,0) > ?', 0).shuffle
-    tiebreaker.reverse.each do |metric|
-      obj = obj.sort_by { |team| team.send(metric) }
+  def sorted_teams
+    obj = teams.active.shuffle
+    (TIEBREAKER_WHITELIST & tiebreaker).reverse.each do |metric|
+      obj = obj.sort_by { |team| [team.send(metric), obj.find_index(team)] }
     end
     obj.reverse
   end
@@ -88,9 +89,9 @@ class Tournament < ApplicationRecord
 
   def calcs_changed?
     wincalc_changed? || \
-    losecalc_changed? || \
-    drawcalc_changed? || \
-    concedecalc_changed?
+      losecalc_changed? || \
+      drawcalc_changed? || \
+      concedecalc_changed?
   end
 
   def start_date_in_future
