@@ -5,6 +5,8 @@ class Tournament < ApplicationRecord
   has_many :races
   has_many :rounds, dependent: :restrict_with_error
 
+  serialize :tiebreaker, Array
+
   resourcify
 
   validates :name, presence: true, length: { minimum: 2, maximum: 20 }, uniqueness: true
@@ -33,7 +35,11 @@ class Tournament < ApplicationRecord
   end
 
   def active_teams
-    teams.where('COALESCE(active,0) > ?', 0)
+    obj = teams.where('COALESCE(active,0) > ?', 0).shuffle
+    tiebreaker.reverse.each do |metric|
+      obj = obj.sort_by { |team| team.send(metric) }
+    end
+    obj.reverse
   end
 
   # protected

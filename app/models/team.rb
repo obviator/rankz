@@ -12,10 +12,6 @@ class Team < ApplicationRecord
 
   # validates :race_id, presence: true
 
-  scope :sorted, lambda {
-    sort_by(&:team_sort_array)
-  }
-
   def total_score
     scores.to_a.sum(&:score)
   end
@@ -67,7 +63,4 @@ class Team < ApplicationRecord
 
   # protected
 
-  def team_sort_array
-    [-total_score, -tf]
-  end
 end
