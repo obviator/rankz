@@ -20,6 +20,7 @@ class Score < ApplicationRecord
   validates_presence_of :table
 
   def score
+    return 0 unless table.complete?
     calc_store
     add_functions
     calculator.evaluate(calc)
