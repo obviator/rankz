@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
 class RoundsController < ApplicationController
+  include Pundit
   before_action :set_tournament, only: %i[index new create]
   before_action :set_round, only: %i[show edit update destroy]
+  after_action :verify_authorized, except: %i[index show]
 
   def index
     @rounds = Round.all
@@ -15,12 +17,14 @@ class RoundsController < ApplicationController
 
   def new
     @round = Round.new
+    authorize @round
   end
 
   def edit; end
 
   def create
     @round = Round.new
+    authorize @round
     @round.tournament = @tournament
 
     respond_to do |format|
@@ -45,11 +49,15 @@ class RoundsController < ApplicationController
   end
 
   def destroy
-    @round.destroy
-    respond_to do |format|
-      format.html { redirect_to rounds_url, notice: 'Round was successfully destroyed.' }
-      format.json { head :no_content }
+    authorize @round
+    url = @round.higher_item ? round_url(@round.higher_item) : tournament_teams_url(@round.tournament)
+    if @round.destroy
+      redirect_to url, notice: 'Round deleted'
+    else
+      flash[:error] = 'Delete failed'
+      redirect_to round_url(@round)
     end
+
   end
 
   private
