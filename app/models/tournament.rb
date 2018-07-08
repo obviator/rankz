@@ -66,7 +66,7 @@ class Tournament < ApplicationRecord
 
   def owner
     roles.each do |role|
-      return role.users.first if role.name = 'owner'
+      return role.users.first if role.name == 'owner'
     end
     nil
   end
