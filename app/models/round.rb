@@ -50,7 +50,7 @@ class Round < ApplicationRecord
 
   def populate
     table = Table.new
-    active_teams.sorted.each_with_index do |team, i|
+    active_teams.each_with_index do |team, i|
       table = Table.new if i.even?
       table.round = self
       throw :abort unless table.save
