@@ -23,13 +23,13 @@ class Team < ApplicationRecord
   def ta
     ta = 0
     scores.each do |score|
-      ta += score.table.scores.where.not(team_id: id).sum(:td)
+      ta -= score.table.scores.where.not(team_id: id).sum(:td)
     end
     ta
   end
 
   def tn
-    tf - ta
+    tf + ta
   end
 
   def cf
@@ -39,13 +39,13 @@ class Team < ApplicationRecord
   def ca
     ca = 0
     scores.each do |score|
-      ca += score.table.scores.where.not(team_id: id).sum(:cas)
+      ca -= score.table.scores.where.not(team_id: id).sum(:cas)
     end
     ca
   end
 
   def cn
-    cf - ca
+    cf + ca
   end
 
   def active?
