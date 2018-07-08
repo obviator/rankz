@@ -11,6 +11,10 @@ class Race < ApplicationRecord
     active&.positive?
   end
 
+  scope :active, lambda {
+    where('COALESCE(active,0) > ?', 0)
+  }
+
   def toggle
     self.active = if active.to_i.zero?
                     1
@@ -25,5 +29,4 @@ class Race < ApplicationRecord
   def locked?
     teams.present?
   end
-
 end
