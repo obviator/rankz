@@ -12,6 +12,10 @@ class Team < ApplicationRecord
 
   # validates :race_id, presence: true
 
+  scope :active, lambda {
+    where('COALESCE(active,0) > ?', 0)
+  }
+
   def total_score
     scores.to_a.sum(&:score)
   end
