@@ -8,7 +8,7 @@ class Round < ApplicationRecord
 
   delegate :wincalc, :concedecalc, :losecalc, :drawcalc, to: :tournament, allow_nil: true
   delegate :start_date, :end_date, to: :tournament
-  delegate :active_teams, to: :tournament
+  delegate :sorted_teams, to: :tournament
   acts_as_list scope: :tournament
 
   validate :even_teams?
@@ -39,7 +39,7 @@ class Round < ApplicationRecord
   private
 
   def even_teams?
-    if tournament.active_teams.count.odd?
+    if tournament.active.count.odd?
       errors.add(tournament.name, 'has an odd number of active teams.')
     end
   end
@@ -50,7 +50,7 @@ class Round < ApplicationRecord
 
   def populate
     table = Table.new
-    active_teams.each_with_index do |team, i|
+    sorted_teams.each_with_index do |team, i|
       table = Table.new if i.even?
       table.round = self
       throw :abort unless table.save
