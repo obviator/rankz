@@ -7,9 +7,8 @@ describe 'owner' do
   let(:tournament) { create(:tournament_with_teams, team_count: 16, owner: owner) }
 
   before :each do
-    tournament.active = 3
-    owner.add_role(:owner, tournament)
     sign_in owner
+    owner.add_role(:owner, tournament)
   end
 
   it 'is allowed rounds#create' do
