@@ -28,5 +28,13 @@ FactoryBot.define do
     after(:create) do |tournament, evaluator|
       evaluator.owner.add_role(:owner, tournament)
     end
+    factory :tournament_with_teams do
+      transient do
+        team_count 16
+      end
+      after(:create) do |tournament, evaluator|
+        create_list(:team, evaluator.team_count, tournament: tournament)
+      end
+    end
   end
 end
