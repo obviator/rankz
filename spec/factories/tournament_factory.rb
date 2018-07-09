@@ -5,9 +5,10 @@ FactoryBot.define do
     start_date Date.today + 7
     end_date Date.today + 8
 
-    name { Faker::StarWars.unique.planet }
-    desc { Faker::StarWars.quote }
-    # slug 'slug'
+    # name { Faker::StarWars.unique.planet }
+    name { Faker::LordOfTheRings.unique.character }
+    desc { Faker::LordOfTheRings.unique.location }
+
     active 1
     wincalc '9+min(3,tf)+min(3,cf)'
     drawcalc '3+min(3,tf)+min(3,cf)'
