@@ -3,20 +3,21 @@
 require 'rails_helper'
 
 describe 'owner' do
+  let(:owner) { create(:owner) }
+  let(:tournament) { create(:tournament_with_teams, team_count: 16, owner: owner) }
 
-  describe 'test' do
-    it 'is allowed rounds#create' do
-      owner = create(:owner)
-      tournament = create(:tournament, owner: owner)
+  before :each do
+    tournament.active = 3
+    owner.add_role(:owner, tournament)
+    sign_in owner
+  end
 
-      create_list(:team, 16, tournament: tournament)
-      sign_in owner
+  it 'is allowed rounds#create' do
 
-      expect do
-        post tournament_rounds_path(tournament)
-      end.to change(Round, :count).by(1)
-                 .and change(Table, :count).by(8)
-                          .and change(Score, :count).by(16)
-    end
+    expect do
+      post tournament_rounds_path(tournament)
+    end.to change(Round, :count).by(1)
+               .and change(Table, :count).by(8)
+                        .and change(Score, :count).by(16)
   end
 end
