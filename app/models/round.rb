@@ -39,7 +39,7 @@ class Round < ApplicationRecord
   private
 
   def even_teams?
-    if tournament.active.count.odd?
+    if tournament.sorted_teams.count.odd?
       errors.add(tournament.name, 'has an odd number of active teams.')
     end
   end
