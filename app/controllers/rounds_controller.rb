@@ -3,7 +3,7 @@
 class RoundsController < ApplicationController
   include Pundit
   before_action :set_tournament, only: %i[index new create]
-  before_action :set_round, only: %i[show edit update destroy]
+  before_action :set_round, only: %i[show edit update destroy redraw]
   after_action :verify_authorized, except: %i[index show]
 
   def index
@@ -58,6 +58,20 @@ class RoundsController < ApplicationController
       redirect_to round_url(@round)
     end
 
+  end
+
+  def redraw
+    authorize @round
+    @tournament = @round.tournament
+    @tables = @round.tables.order(:position)
+    @round.redraw
+    respond_to do |format|
+      if @round.save
+        format.js { flash.now[:notice] = 'Redrawn' }
+      else
+        format.js { render action: 'show' }
+      end
+    end
   end
 
   private

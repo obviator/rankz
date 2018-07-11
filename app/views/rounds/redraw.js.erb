@@ -1,0 +1,8 @@
+
+$("tbody#table-list-body").html('');
+
+<% @tables.each do |table| %>
+$("tbody#table-list-body").append('<%= j render "rounds/row", table: table %>');
+$('tbody#table-list-body:last-child').addClass('animated fadeInRight').delay( 800 );
+<% end %>
+

@@ -8,4 +8,8 @@ class RoundPolicy < ApplicationPolicy
   def create?
     user.has_role?(:owner, record) || super
   end
+
+  def redraw?
+    create?
+  end
 end

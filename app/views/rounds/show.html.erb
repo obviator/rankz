@@ -7,11 +7,19 @@
 <% if @round.last? %>
   <div class="row text-center">
     <div class="col-2 offset-10">
-      <%= link_to 'Delete', round_path(@round),
-                  method: :delete,
-                  class: "btn btn-danger",
-                  data: { confirm: "Are you sure?" } %>
+      <div class="btn-group" role="group">
+        <%= link_to 'Redraw', redraw_round_path(@round),
+                    method: :post,
+                    remote: true,
+                    class: "btn btn-warning",
+                    data: { confirm: "Are you sure?" } %>
+        <%= link_to 'Delete', round_path(@round),
+                    method: :delete,
+                    class: "btn btn-danger",
+                    data: { confirm: "Are you sure?" } %>
+      </div>
     </div>
+
   </div>
 <% end %>
 
@@ -26,7 +34,7 @@
       <th scope="col">Score</th>
     </tr>
     </thead>
-    <tbody>
+    <tbody id="table-list-body">
     <% @tables.each do |table| %>
       <%= render 'rounds/row', table: table %>
     <% end %>

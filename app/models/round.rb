@@ -36,6 +36,11 @@ class Round < ApplicationRecord
     false
   end
 
+  def redraw
+    tables.each(&:destroy!)
+    populate
+  end
+
   private
 
   def even_teams?

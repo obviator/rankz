@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     end
     resources :rounds, shallow: true do
       member do
-        post 'populate'
+        post 'redraw'
       end
       member do
         post 'reset'
