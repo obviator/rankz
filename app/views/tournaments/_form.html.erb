@@ -47,6 +47,12 @@
     <%= form.label :concedecalc, "Concede:" %>
     <%= form.text_field :concedecalc, class: "form-control col-lg-4 col-xl-5" %>
   </div>
+  <% tournament.tiebreaker.each_with_index do |tie, i| %>
+    <div class="form-group">
+      <%#= form.text_field tie, 'tie' %>
+      <%= form.text_field "tiebreaker[#{i}]", value: tie %>
+    </div>
+  <% end %>
 
   <%= form.submit class: "btn btn-primary" %>
 <% end %>
