@@ -33,7 +33,12 @@ class Tournament < ApplicationRecord
   end
 
   def self.tiebreaker_list
-    TIEBREAKERS.zip(TIEBREAKERS)
+    tiebreaker_list = []
+    TIEBREAKERS.each do |tie|
+      value = I18n.t "tournaments.edit.tiebreakers.#{tie}", default: tie
+      tiebreaker_list << [value, tie]
+    end
+    tiebreaker_list
   end
 
   def active_races
@@ -113,11 +118,11 @@ class Tournament < ApplicationRecord
 
   def slug_candidates
     [
-        :name,
-        [:name, start_date.strftime('%y')],
-        [:name, start_date.strftime('%Y')],
-        [:name, start_date.strftime('%y-%m-%d')],
-        [:name, start_date]
+      :name,
+      [:name, start_date.strftime('%y')],
+      [:name, start_date.strftime('%Y')],
+      [:name, start_date.strftime('%y-%m-%d')],
+      [:name, start_date]
     ]
   end
 

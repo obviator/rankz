@@ -1,0 +1,11 @@
+en:
+  tournaments:
+    edit:
+      tiebreakers:
+        total_score: Total score
+        tf: Touchdowns for
+        ta: Touchdowns against
+        tn: Net touchdowns
+        cf: Casualties for
+        ca: Casualties against
+        cn: Net casualties
