@@ -1,5 +1,5 @@
 <tr id="table_row_<%= table.id %>">
-  <th rowspan=2 scope="row" class="text-center align-middle">
+  <th rowspan=2 scope="row" class="text-center align-middle animated">
     <%= link_to table.position, edit_table_path(table),
                 remote: true,
                 class: "btn
@@ -11,7 +11,7 @@
     <% unless i == 0 %>
     <tr id="table_row_<%= table.id %>_5">
   <% end %>
-  <td>
+  <td class="animated">
     <%= score.team.name %>
   </td>
   <td class="text-center">

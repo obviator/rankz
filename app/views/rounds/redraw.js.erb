@@ -1,8 +1,16 @@
+$body = $("tbody#table-list-body")
 
-$("tbody#table-list-body").html('');
+$body.html('');
 
-<% @tables.each do |table| %>
-$("tbody#table-list-body").append('<%= j render "rounds/row", table: table %>');
-$('tbody#table-list-body:last-child').addClass('animated fadeInRight').delay( 800 );
+<% @tables.each_with_index do |table,i| %>
+$body.append('<%= j render "rounds/row", table: table %>');
+$("#table_row_<%= table.id %>").hide();
+$("#table_row_<%= table.id %>_5").hide().delay(<%= i * 20 + 1 %>).queue(function () {
+    $("#table_row_<%= table.id %>").show();
+    $("#table_row_<%= table.id %>>th.animated").addClass('fadeInLeft');
+    $("#table_row_<%= table.id %>>td.animated").addClass('fadeInRight');
+    $("#table_row_<%= table.id %>_5").show();
+    $("#table_row_<%= table.id %>_5>td.animated").addClass('fadeInRight');
+});
 <% end %>
 
