@@ -41,6 +41,16 @@ class Round < ApplicationRecord
     populate
   end
 
+  def reset
+    tables.each do |table|
+      table.scores.each do |score|
+        score.cas = nil
+        score.td = nil
+        score.save
+      end
+    end
+  end
+
   private
 
   def even_teams?

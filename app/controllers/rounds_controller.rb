@@ -3,7 +3,7 @@
 class RoundsController < ApplicationController
   include Pundit
   before_action :set_tournament, only: %i[index new create]
-  before_action :set_round, only: %i[show edit update destroy redraw]
+  before_action :set_round, only: %i[show edit update destroy redraw reset]
   after_action :verify_authorized, except: %i[index show]
 
   def index
@@ -68,6 +68,20 @@ class RoundsController < ApplicationController
     respond_to do |format|
       if @round.save
         format.js { flash.now[:notice] = 'Redrawn' }
+      else
+        format.js { render action: 'show' }
+      end
+    end
+  end
+
+  def reset
+    authorize @round
+    @tournament = @round.tournament
+    @tables = @round.tables.order(:position)
+    @round.reset
+    respond_to do |format|
+      if @round.save
+        format.js { flash.now[:notice] = 'Reset' }
       else
         format.js { render action: 'show' }
       end

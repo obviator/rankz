@@ -12,4 +12,8 @@ class RoundPolicy < ApplicationPolicy
   def redraw?
     create?
   end
+
+  def reset?
+    create?
+  end
 end
