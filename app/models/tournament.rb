@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Tournament < ApplicationRecord
+  TIEBREAKERS ||= %w[total_score opponent_score tf ta tn cf ca cn].freeze
 
   has_many :teams, dependent: :restrict_with_error
   has_many :races
@@ -29,6 +30,10 @@ class Tournament < ApplicationRecord
 
   def self.list
     Tournament.where('COALESCE(active,0) > ?', 0).order('start_date')
+  end
+
+  def self.tiebreaker_list
+    TIEBREAKERS.zip(TIEBREAKERS)
   end
 
   def active_races

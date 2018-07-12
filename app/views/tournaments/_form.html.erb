@@ -5,7 +5,7 @@
     <%= form.text_field :name, class: "form-control col-lg-4 col-xl-5" %>
   </div>
   <div class="form-group">
-    <%= form.label :desc %>
+    <%= form.label :desc, "Tournament description" %>
     <%= form.text_area :desc, class: "form-control col-lg-4 col-xl-5" %>
   </div>
   <div class="form-group">
@@ -32,27 +32,31 @@
     </div>
   </div>
   <div class="form-group">
-    <%= form.label :wincalc, "Win:" %>
+    <%= form.label :wincalc, "Win calculation" %>
     <%= form.text_field :wincalc, class: "form-control col-lg-4 col-xl-5" %>
   </div>
   <div class="form-group">
-    <%= form.label :drawcalc, "Draw:" %>
+    <%= form.label :drawcalc, "Draw calculation" %>
     <%= form.text_field :drawcalc, class: "form-control col-lg-4 col-xl-5" %>
   </div>
   <div class="form-group">
-    <%= form.label :losecalc, "Loss:" %>
+    <%= form.label :losecalc, "Loss calculation" %>
     <%= form.text_field :losecalc, class: "form-control col-lg-4 col-xl-5" %>
   </div>
   <div class="form-group">
-    <%= form.label :concedecalc, "Concede:" %>
+    <%= form.label :concedecalc, "Concede calculation" %>
     <%= form.text_field :concedecalc, class: "form-control col-lg-4 col-xl-5" %>
   </div>
+
+  <%= form.label :tiebreaker, "Tiebreakers" %>
   <% tournament.tiebreaker.each_with_index do |tie, i| %>
     <div class="form-group">
-      <%#= form.text_field tie, 'tie' %>
-      <%= form.text_field "tiebreaker[#{i}]", value: tie %>
+      <%= select_tag("tiebreaker[#{i}]", options_for_select(tiebreaker_list, tie)) %>
     </div>
   <% end %>
+    <div class="form-group">
+      <%= select_tag("tiebreaker[-1]", options_for_select(tiebreaker_list), prompt: "<select>") %>
+    </div>
 
   <%= form.submit class: "btn btn-primary" %>
 <% end %>
