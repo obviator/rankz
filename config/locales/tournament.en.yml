@@ -3,6 +3,7 @@ en:
     edit:
       tiebreakers:
         total_score: Total score
+        opponent_score: Opponent score
         tf: Touchdowns for
         ta: Touchdowns against
         tn: Net touchdowns
