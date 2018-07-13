@@ -49,9 +49,11 @@
   </div>
   <h3 id="Tiebreakers"><%= form.label :tiebreaker, "Tiebreakers" %></h3>
   <div class="container pull-left col-12">
-    <% tournament.tiebreaker.each_with_index do |tie, i| %>
-      <%= render 'tiebreakers', tie: tie, new: false %>
-    <% end %>
+    <div id="tiebreaker-list">
+      <% tournament.tiebreaker.each_with_index do |tie, i| %>
+        <%= render 'tiebreakers', tie: tie, new: false %>
+      <% end %>
+    </div>
     <div class="form-group col-3">
       <%= select_tag("tournament[tiebreaker][]",
                      options_for_select(tiebreaker_list tournament: tournament),
