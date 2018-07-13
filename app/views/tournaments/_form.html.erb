@@ -47,19 +47,24 @@
     <%= form.label :concedecalc, "Concede calculation" %>
     <%= form.text_field :concedecalc, class: "form-control col-lg-4 col-xl-5" %>
   </div>
-
-  <%= form.label :tiebreaker, "Tiebreakers" %>
-  <% tournament.tiebreaker.each_with_index do |tie, i| %>
-    <div class="form-group">
-      <%= select_tag("tournament[tiebreaker][]",
-                     options_for_select(tiebreaker_list, tie)) %>
-    </div>
-  <% end %>
-    <div class="form-group">
-      <%= select_tag("tournament[tiebreaker][]",
-                     options_for_select(tiebreaker_list tournament: tournament),
-                     prompt: "<select>") %>
-    </div>
+  <h3 id="Tiebreakers"><%= form.label :tiebreaker, "Tiebreakers" %></h3>
+  <div class="container pull-left col-12">
+    <% tournament.tiebreaker.each_with_index do |tie, i| %>
+      <div class="alert alert-success alert-dismissible col-3 " role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <strong><%= I18n.t("tournaments.edit.tiebreakers.#{tie}", default: tie) %></strong>
+        <%= hidden_field_tag("tournament[tiebreaker][]",
+                             tie,
+                             readonly: true) %>
+      </div>
+    <% end %>
+  </div>
+  <div class="form-group">
+    <%= select_tag("tournament[tiebreaker][]",
+                   options_for_select(tiebreaker_list tournament: tournament),
+                   prompt: "<select>") %>
+  </div>
 
   <%= form.submit class: "btn btn-primary" %>
 <% end %>
