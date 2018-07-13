@@ -35,7 +35,8 @@ class TournamentsController < ApplicationController
   def update
     authorize @tournament
     if @tournament.update(tournament_params)
-      redirect_to edit_tournament_url(@tournament), notice: 'Tournament updated'
+      redirect_to edit_tournament_url(@tournament),
+                  notice: 'Tournament updated'
     else
       render :edit
     end
