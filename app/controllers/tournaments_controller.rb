@@ -3,12 +3,6 @@ class TournamentsController < ApplicationController
   before_action :set_tournament, only: %i[show edit update destroy]
   after_action :verify_authorized, except: %i[index]
 
-  helper_method :tiebreaker_list
-
-  def tiebreaker_list
-    Tournament.tiebreaker_list
-  end
-
   def index
     @tournaments = Tournament.list
   end
@@ -69,6 +63,7 @@ class TournamentsController < ApplicationController
                                        :wincalc,
                                        :drawcalc,
                                        :losecalc,
-                                       :concedecalc)
+                                       :concedecalc,
+                                       tiebreaker: [])
   end
 end
