@@ -23,6 +23,8 @@ class Tournament < ApplicationRecord
   validate :end_after_start
   validate :must_have_owner, on: :update
 
+  validate :tiebreaker_whitelist
+
   validate :lock_calcs
 
   extend FriendlyId
@@ -32,13 +34,8 @@ class Tournament < ApplicationRecord
     Tournament.where('COALESCE(active,0) > ?', 0).order('start_date')
   end
 
-  def self.tiebreaker_list
-    tiebreaker_list = []
-    TIEBREAKERS.each do |tie|
-      value = I18n.t "tournaments.edit.tiebreakers.#{tie}", default: tie
-      tiebreaker_list << [value, tie]
-    end
-    tiebreaker_list
+  def tiebreaker=(value)
+    super(value & TIEBREAKERS)
   end
 
   def active_races
@@ -47,13 +44,11 @@ class Tournament < ApplicationRecord
 
   def sorted_teams
     obj = teams.active.shuffle
-    (TIEBREAKERS & tiebreaker).reverse.each do |metric|
+    tiebreaker.reverse.each do |metric|
       obj = obj.sort_by { |team| [team.send(metric), obj.find_index(team)] }
     end
     obj.reverse
   end
-
-  # protected
 
   def user_is_to?
     return false unless user_signed_in?
@@ -128,5 +123,9 @@ class Tournament < ApplicationRecord
 
   def must_have_owner
     errors.add(:owner, 'must exist.') if owner.nil?
+  end
+
+  def tiebreaker_whitelist
+    errors.add(:tiebreaker, 'violates whitelist.') unless tiebreaker & TIEBREAKERS == tiebreaker
   end
 end
