@@ -51,11 +51,14 @@
   <%= form.label :tiebreaker, "Tiebreakers" %>
   <% tournament.tiebreaker.each_with_index do |tie, i| %>
     <div class="form-group">
-      <%= select_tag("tiebreaker[#{i}]", options_for_select(tiebreaker_list, tie)) %>
+      <%= select_tag("tournament[tiebreaker][]",
+                     options_for_select(tiebreaker_list, tie)) %>
     </div>
   <% end %>
     <div class="form-group">
-      <%= select_tag("tiebreaker[-1]", options_for_select(tiebreaker_list), prompt: "<select>") %>
+      <%= select_tag("tournament[tiebreaker][]",
+                     options_for_select(tiebreaker_list tournament: tournament),
+                     prompt: "<select>") %>
     </div>
 
   <%= form.submit class: "btn btn-primary" %>
