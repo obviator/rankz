@@ -50,20 +50,14 @@
   <h3 id="Tiebreakers"><%= form.label :tiebreaker, "Tiebreakers" %></h3>
   <div class="container pull-left col-12">
     <% tournament.tiebreaker.each_with_index do |tie, i| %>
-      <div class="alert alert-success alert-dismissible col-3 " role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span></button>
-        <strong><%= I18n.t("tournaments.edit.tiebreakers.#{tie}", default: tie) %></strong>
-        <%= hidden_field_tag("tournament[tiebreaker][]",
-                             tie,
-                             readonly: true) %>
-      </div>
+      <%= render 'tiebreakers', tie: tie, new: false %>
     <% end %>
-  </div>
-  <div class="form-group">
-    <%= select_tag("tournament[tiebreaker][]",
-                   options_for_select(tiebreaker_list tournament: tournament),
-                   prompt: "<select>") %>
+    <div class="form-group col-3">
+      <%= select_tag("tournament[tiebreaker][]",
+                     options_for_select(tiebreaker_list tournament: tournament),
+                     prompt: t('.add_tiebreaker', default: '<add tiebreaker>'),
+                     class: "form-control") %>
+    </div>
   </div>
 
   <%= form.submit class: "btn btn-primary" %>
