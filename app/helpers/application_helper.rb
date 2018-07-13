@@ -42,4 +42,9 @@ module ApplicationHelper
     image_tag(adorable_url, alt: user.username, class: "img-circle elevation-2")
   end
 
+  def controller_javascript(opts = {})
+    if Rails.application.assets.find_asset("controllers/#{controller_name}.js")
+      javascript_include_tag("controllers/#{controller_name}", opts)
+    end
+  end
 end
