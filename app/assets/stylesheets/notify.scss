@@ -1,0 +1,36 @@
+$opac: 0.6;
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translate3d(100%, 0, 0);
+  }
+
+  to {
+    opacity: $opac;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.fadeInRight {
+  animation-name: fadeInRight;
+}
+
+@keyframes fadeOutDown {
+  from {
+    opacity: $opac;
+  }
+
+  to {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0);
+  }
+}
+
+[data-notify="container"][class*="alert-"] > [data-notify="message"] {
+  opacity: 1;
+}
+
+.fadeOutDown {
+  animation-name: fadeOutDown;
+}

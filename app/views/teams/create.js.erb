@@ -1,0 +1,5 @@
+$modal.modal('hide');
+$('#teams-list > tbody:last-child').append('<%= j render "teams/row", team: @team %>');
+$('#team_row_<%= @team.id %>').find('td').effect('highlight', {color: '#4BADF5'}, 2000);
+
+$.notify('<%= j flash[:notice] %>');

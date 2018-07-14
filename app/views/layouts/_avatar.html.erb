@@ -1,0 +1,9 @@
+<!-- Sidebar user panel (optional) -->-->
+<div class="user-panel mt-3 pb-3 mb-3 d-flex">
+  <div class="image">
+    <%= adorable_avatar_for(user: current_user) %>
+  </div>
+  <div class="info">
+    <%= link_to current_user.username, user_path(current_user), class: 'd-block' %>
+  </div>
+</div>

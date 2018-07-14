@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyText
+  position: 1
+  tournament: one
+
+two:
+  name: MyText
+  position: 1
+  tournament: two

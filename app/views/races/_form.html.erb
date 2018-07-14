@@ -1,0 +1,7 @@
+<%= render 'shared/errors', obj: @race %>
+<%= form_for [@tournament, @race], url: [@tournament, @race], remote: true do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name, class: "form-control" %>
+  <%#= f.label :race %>
+  <%#= f.collection_select(:race_id, races.order(:name), :id, :name, { prompt: '<select>' }, class: "form-control") %>
+<% end %>

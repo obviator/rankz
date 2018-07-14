@@ -1,4 +1,5 @@
 Rails.application.configure do
+  # Verifies that versions and hashed value of the package contents in the project's package.json
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
@@ -16,7 +17,7 @@ Rails.application.configure do
 
   # Ensures that a master key has been made available in either ENV["RAILS_MASTER_KEY"]
   # or in config/master.key. This key is used to decrypt credentials (and other encrypted files).
-  # config.require_master_key = true
+  config.require_master_key = true
 
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
@@ -64,6 +65,10 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "rankz_#{Rails.env}"
 
   config.action_mailer.perform_caching = false
+
+  config.action_mailer.default_url_options = {  host: ENV.fetch('smtp_host'),
+                                                protocol: ENV.fetch('smtp_protocol')
+  }
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.

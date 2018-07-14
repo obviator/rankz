@@ -1,0 +1,40 @@
+// Custom bootstrap variables must be set or imported *before* bootstrap.
+
+@import "font-awesome/css/font-awesome";
+
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/mixins";
+
+@import 'bootstrap/scss/bootstrap';
+@import 'admin-lte/dist/css/adminlte';
+@import 'bootstrap/dist/css/bootstrap';
+@import 'jquery-ui-bundle/jquery-ui';
+
+@import 'animate.css/animate';
+
+
+@import "fonts";
+$geosteam_font: 'geosteam';
+
+.card-columns {
+  @include media-breakpoint-only(xs) {
+    column-count: 1;
+  }
+  @include media-breakpoint-only(sm) {
+    column-count: 1;
+  }
+  @include media-breakpoint-only(md) {
+    column-count: 2;
+  }
+  @include media-breakpoint-only(lg) {
+    column-count: 3;
+  }
+  @include media-breakpoint-only(xl) {
+    column-count: 4;
+  }
+}
+
+.font-geosteam {
+  font-family: $geosteam_font;
+}

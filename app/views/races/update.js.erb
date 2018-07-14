@@ -1,0 +1,6 @@
+$modal.modal('hide');
+$('#race_row_<%= @race.id %>').replaceWith('<%= j render "races/row", race: @race %>');
+$('#race_row_<%= @race.id %>').find('td').effect('highlight', {color: '#4BADF5'}, 2000);
+
+$.notify('<%= j flash[:notice] %>');
+

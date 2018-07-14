@@ -1,15 +1,51 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Rankz</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>Rankz</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+  <%#= favicon_link_tag 'favicon.svg' %>
+  <%= render 'application/favicon' %>
 
-  <body>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%= controller_javascript 'data-turbolinks-track': 'reload' %>
+
+  <script>
+      <%= render 'shared/flash.js' %>
+  </script>
+</head>
+
+<body class="sidebar-mini sidebar-collapse cont_<%= controller_name %> act_<%= action_name %>">
+<div class="wrapper">
+
+  <!-- Navbar -->
+  <%= render 'layouts/navbar' %>
+  <!-- /.navbar -->
+
+  <!-- Main Sidebar Container -->
+  <%= render 'layouts/sidebar' %>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper bg-white pl-lg-3 pl-md-2 pl-xs-1">
+    <%# flash.each do |name, msg| %>
+    <%#= content_tag(:div, msg, class: "alert alert-info") %>
+    <%# end %>
+    <%= render 'layouts/modal' %>
+    <%#= flash_messages %>
     <%= yield %>
-  </body>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+  <!-- Control Sidebar -->
+  <%= render 'layouts/control_sidebar' %>
+  <!-- /.control-sidebar -->
+
+  <!-- Main Footer -->
+  <%= render 'layouts/footer' %>
+</div>
+
+</body>
 </html>

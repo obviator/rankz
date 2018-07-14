@@ -1,0 +1,16 @@
+.table-striped-couplets>tbody>tr:nth-child(4n+3)>td,
+.table-striped-couplets>tbody>tr:nth-child(4n+0)>td,
+.table-striped-couplets>tbody>tr:nth-child(4n+3)>th,
+.table-striped-couplets>tbody>tr:nth-child(4n+0)>th
+{
+  background-color: #F9F9F9;
+}
+
+//Table 1
+.table-striped-couplets>tbody>tr:nth-child(1)>td,
+.table-striped-couplets>tbody>tr:nth-child(2)>td,
+.table-striped-couplets>tbody>tr:nth-child(1)>th,
+.table-striped-couplets>tbody>tr:nth-child(2)>th
+{
+  //font-weight: inherit;
+}

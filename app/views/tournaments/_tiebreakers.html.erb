@@ -1,0 +1,8 @@
+<div class="alert alert-<%= new ? 'secondary' : 'success' %> alert-dismissible col-3 " role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span></button>
+  <strong><%= t(".#{tie}", default: tie) %></strong>
+  <%= hidden_field_tag("tournament[tiebreaker][]",
+                       tie,
+                       readonly: true) %>
+</div>

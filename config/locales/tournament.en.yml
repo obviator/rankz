@@ -1,0 +1,13 @@
+en:
+  tournaments:
+    form:
+      add_tiebreaker: <add tiebreaker>
+    tiebreakers:
+      total_score: Total score
+      opponent_score: Opponent score
+      tf: Touchdowns for
+      ta: Touchdowns against
+      tn: Net touchdowns
+      cf: Casualties for
+      ca: Casualties against
+      cn: Net casualties

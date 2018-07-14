@@ -1,0 +1,27 @@
+defaults: &defaults
+  smtp_address: 'smtp.sendgrid.net'
+  smtp_sender: 'no-reply@rankz.enjunz.com'
+  smtp_authentication: 'plain'
+  smtp_enable_starttls_auto: 'true'
+  smtp_port: '2525'
+  smtp_user_name: 'apikey'
+  system_email: 'system@rankz.enjunz.com'
+  system_user_name: 'system'
+  smtp_protocol: 'http'
+
+development:
+  <<: *defaults
+  smtp_domain: 'localhost'
+  smtp_host: 'localhost:3000'
+  system_password: 'password'
+
+test:
+  <<: *defaults
+  smtp_domain: 'localhost'
+  smtp_host: 'localhost'
+  system_password: 'password'
+
+production:
+  <<: *defaults
+  smtp_domain: 'mail.enjunz.com'
+  smtp_host: 'rankz.enjunz.com'

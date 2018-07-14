@@ -1,0 +1,67 @@
+<%= form_with(model: tournament, local: true) do |form| %>
+  <%= render 'shared/errors', obj: tournament %>
+  <div class="form-group">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: "form-control col-lg-4 col-xl-5" %>
+  </div>
+  <div class="form-group">
+    <%= form.label :desc, "Tournament description" %>
+    <%= form.text_area :desc, class: "form-control col-lg-4 col-xl-5" %>
+  </div>
+  <div class="form-group">
+    <div class="col-xl-5 col-lg-4 m-0 p-0">
+      <div class="row m-0 p-0">
+        <div class="col-lg-5 m-0 p-0">
+          <%= form.label :start_date %>
+          <%= form.date_field :start_date,
+                              min: Date.today,
+                              # value: tournament.start_date.strftime("%d/%m/%Y"),
+                              class: "form-control text-center" %>
+        </div>
+        <div class="col-lg-2 m-0 p-0">
+
+        </div>
+        <div class="col-lg-5 m-0 p-0">
+          <%= form.label :end_date %>
+          <%= form.date_field :end_date,
+                              min: tournament.start_date,
+                              # value: end_date.strftime("%d/%m/%Y"),
+                              class: "form-control text-center" %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= form.label :wincalc, "Win calculation" %>
+    <%= form.text_field :wincalc, class: "form-control col-lg-4 col-xl-5" %>
+  </div>
+  <div class="form-group">
+    <%= form.label :drawcalc, "Draw calculation" %>
+    <%= form.text_field :drawcalc, class: "form-control col-lg-4 col-xl-5" %>
+  </div>
+  <div class="form-group">
+    <%= form.label :losecalc, "Loss calculation" %>
+    <%= form.text_field :losecalc, class: "form-control col-lg-4 col-xl-5" %>
+  </div>
+  <div class="form-group">
+    <%= form.label :concedecalc, "Concede calculation" %>
+    <%= form.text_field :concedecalc, class: "form-control col-lg-4 col-xl-5" %>
+  </div>
+  <h3 id="Tiebreakers"><%= form.label :tiebreaker, "Tiebreakers" %></h3>
+  <div class="container pull-left col-12">
+    <div id="tiebreaker-list">
+      <% tournament.tiebreaker.each_with_index do |tie, i| %>
+        <%= render 'tiebreakers', tie: tie, new: false %>
+      <% end %>
+    </div>
+    <div class="form-group col-3">
+      <%= select_tag("tournament[tiebreaker][]",
+                     options_for_select(tiebreaker_list tournament: tournament),
+                     prompt: t('.add_tiebreaker', default: '<add tiebreaker>'),
+                     class: "form-control",
+                     id: "add-tiebreaker-select") %>
+    </div>
+  </div>
+
+  <%= form.submit class: "btn btn-primary" %>
+<% end %>

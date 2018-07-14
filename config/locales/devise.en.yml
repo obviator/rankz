@@ -1,0 +1,63 @@
+# Additional translations at https://github.com/plataformatec/devise/wiki/I18n
+
+en:
+  devise:
+    confirmations:
+      confirmed: "Email confirmed"
+      send_instructions: "Confirmation email sent"
+      send_paranoid_instructions: "If your email address exists in our database, you will receive an email with instructions for how to confirm your email address in a few minutes."
+    failure:
+      already_authenticated: "Already signed in"
+      inactive: "Account not activated"
+      invalid: "Invalid %{authentication_keys} or password"
+      locked: "Account locked"
+      last_attempt: "One more attempt before account locked"
+      not_found_in_database: "Invalid %{authentication_keys} or password"
+      timeout: "Session expired"
+      unauthenticated: "Sign in required"
+      unconfirmed: "Email confirmation required"
+    mailer:
+      confirmation_instructions:
+        subject: "Confirmation instructions"
+      reset_password_instructions:
+        subject: "Reset password instructions"
+      unlock_instructions:
+        subject: "Unlock instructions"
+      email_changed:
+        subject: "Email Changed"
+      password_change:
+        subject: "Password Changed"
+    omniauth_callbacks:
+      failure: "Could not authenticate you from %{kind} because \"%{reason}\"."
+      success: "%{kind} authenticated"
+    passwords:
+      no_token: "Reset from email only"
+      send_instructions: "Reset email sent"
+      send_paranoid_instructions: "If your email address exists in our database, you will receive a password recovery link at your email address in a few minutes."
+      updated: "Password changed. Signed in"
+      updated_not_active: "Password changed"
+    registrations:
+      destroyed: "Account cancelled"
+      signed_up: "Account created"
+      signed_up_but_inactive: "Account created but inactive"
+      signed_up_but_locked: "Account created but locked"
+      signed_up_but_unconfirmed: "Email unconfirmed"
+      update_needs_confirmation: "Account updated. Confirmation email sent"
+    sessions:
+      signed_in: "Signed in"
+      signed_out: "Signed out"
+      already_signed_out: "Signed out"
+    unlocks:
+      send_instructions: "Unlock email sent"
+      send_paranoid_instructions: "If your account exists, you will receive an email with instructions for how to unlock it in a few minutes."
+      unlocked: "Account unlocked"
+  errors:
+    messages:
+      already_confirmed: "Already confirmed. Please sign in"
+      confirmation_period_expired: "Token expired. Please request a new one"
+      expired: "has expired"
+      not_found: "not found"
+      not_locked: "not locked"
+      not_saved:
+        one: "1 error prohibited this %{resource} from being saved:"
+        other: "%{count} errors prohibited this %{resource} from being saved:"

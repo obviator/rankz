@@ -1,0 +1,17 @@
+var messages = [];
+
+<% flash.each do |msg_type, message| %>
+messages.push(['<%= j bootstrap_class_for msg_type %>', '<%= message %>']);
+<% end %>
+
+$(document).on('turbolinks:load', function () {
+    for (var i = 0; i < messages.length; i++) {
+        $.notify({
+            message: messages[i][1]
+        }, {
+            allow_dismiss: messages[i][0] != 'info',
+            delay: messages[i][0] == 'info' ? 1000 : 0,
+            type: messages[i][0]
+        });
+    }
+})
