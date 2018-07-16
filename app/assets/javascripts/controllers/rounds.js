@@ -14,7 +14,7 @@ function filterTeams() {
             }
         });
         if ($match || !$filter) {
-            $table.show();
+            $table.addClass('animated').show();
         }
         else {
             $table.hide();
