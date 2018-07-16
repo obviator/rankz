@@ -1,7 +1,8 @@
 $("tbody.table-list-body").remove();
 
-<% @tables.each do |table| %>
+<% @tables.each_with_index do |table,i| %>
 $row = $('<%= j render "rounds/row", table: table %>');
-$row.insertAfter($('#teams-list').children().last());
+$row.insertAfter($('#teams-list').children().last()).hide().delay(<%= i*50+1 %>).show(0);
+$row.addClass('animated');
 <% end %>
 
