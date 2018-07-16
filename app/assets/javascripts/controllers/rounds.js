@@ -1,21 +1,23 @@
 $(document).on('turbolinks:load', function () {
- $('#teamFilterSearch').keyup(filterTeams);
+    $('#teamFilterSearch').keyup(filterTeams);
 });
 
 function filterTeams() {
-    var $filter = $("#teamFilterSearch").val().toUpperCase();
+    let $filter = $("#teamFilterSearch").val().toUpperCase();
 
-    $('[data-behavior~=searchable]').remove();
-
-
-    // for (i = 0; i < tr.length; i++) {
-    //     td = tr[i].getElementsByTagName("td")[0];
-    //     if (td) {
-    //         if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-    //             tr[i].style.display = "";
-    //         } else {
-    //             tr[i].style.display = "none";
-    //         }
-    //     }
-    // }
+    $('[data-behavior~=searchable-table]').each(function (i, table) {
+        let $table = $(table);
+        let $match = false;
+        $table.find('[data-behavior~=searchable-cell]').each(function (i, td) {
+            if ($(td).text().toUpperCase().indexOf($filter) > 0) {
+                $match = true;
+            }
+        });
+        if ($match || !$filter) {
+            $table.show();
+        }
+        else {
+            $table.hide();
+        }
+    });
 }

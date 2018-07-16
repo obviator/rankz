@@ -42,7 +42,7 @@
     </tr>
     </thead>
     <% @tables.each do |table| %>
-    <tbody id="table-list-<%= table.id %>" data-behavior="searchable">
+    <tbody id="table-list-<%= table.id %>" data-behavior="searchable-table">
       <%= render 'rounds/row', table: table %>
     </tbody>
     <% end %>
