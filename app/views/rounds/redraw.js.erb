@@ -1,16 +1,8 @@
-$body = $("tbody#table-list-body")
-
-$body.html('');
+$("tbody.table-list-body").remove();
 
 <% @tables.each_with_index do |table,i| %>
-$body.append('<%= j render "rounds/row", table: table %>');
-$("#table_row_<%= table.id %>").hide();
-$("#table_row_<%= table.id %>_5").hide().delay(<%= i * 20 + 1 %>).queue(function () {
-    $("#table_row_<%= table.id %>").show();
-    $("#table_row_<%= table.id %>>th.animated").addClass('fadeInLeft');
-    $("#table_row_<%= table.id %>>td.animated").addClass('fadeInRight');
-    $("#table_row_<%= table.id %>_5").show();
-    $("#table_row_<%= table.id %>_5>td.animated").addClass('fadeInRight');
-});
+$row = $('<%= j render "rounds/row", table: table %>');
+$row.insertAfter($('#teams-list').children().last()).hide().delay(<%= i*50+1 %>).show(0);
+$row.addClass('animated');
 <% end %>
 

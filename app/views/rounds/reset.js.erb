@@ -1,8 +1,7 @@
-$body = $("tbody#table-list-body")
+$("tbody.table-list-body").remove();
 
-$body.html('');
-
-<% @tables.each_with_index do |table,i| %>
-$body.append('<%= j render "rounds/row", table: table %>');
+<% @tables.each do |table| %>
+$row = $('<%= j render "rounds/row", table: table %>');
+$row.insertAfter($('#teams-list').children().last());
 <% end %>
 
