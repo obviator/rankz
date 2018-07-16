@@ -28,6 +28,8 @@
   </div>
 <% end %>
 
+<input type="text" id="teamFilterSearch" placeholder="Search for names..">
+
 <div class="table-responsive-lg m-xl-4 m-lg-4 m-sm-1 m-xs-1">
   <table class="table table-sm table-striped-couplets table-bordered" id="teams-list">
     <thead class="thead-light">
@@ -39,10 +41,10 @@
       <th scope="col">Score</th>
     </tr>
     </thead>
-    <tbody id="table-list-body">
     <% @tables.each do |table| %>
+    <tbody id="table-list-<%= table.id %>" data-behavior="searchable">
       <%= render 'rounds/row', table: table %>
-    <% end %>
     </tbody>
+    <% end %>
   </table>
 </div>
