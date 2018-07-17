@@ -6,7 +6,8 @@
 </div>
 <% if @round.last? %>
   <div class="row text-center">
-    <div class="col-2 offset-9">
+    <input type="text" id="teamFilterSearch" class="form-control col-2 offset-1" placeholder="<%= t '.search_terms' %>">
+    <div class="col-2 offset-6">
       <div class="btn-group" role="group">
         <%= link_to 'Reset', reset_round_path(@round),
                     method: :post,
@@ -28,6 +29,7 @@
   </div>
 <% end %>
 
+
 <div class="table-responsive-lg m-xl-4 m-lg-4 m-sm-1 m-xs-1">
   <table class="table table-sm table-striped-couplets table-bordered" id="teams-list">
     <thead class="thead-light">
@@ -39,10 +41,8 @@
       <th scope="col">Score</th>
     </tr>
     </thead>
-    <tbody id="table-list-body">
     <% @tables.each do |table| %>
       <%= render 'rounds/row', table: table %>
     <% end %>
-    </tbody>
   </table>
 </div>
