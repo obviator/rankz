@@ -15,4 +15,4 @@ Rails.application.config.assets.paths << Rails.root.join('assets/controllers')
 # folder are already added.
 # Rails.application.config.assets.precompile += %w( admin.js admin.css )
 # Add controller specific js to asset precompile path
-Rails.application.config.assets.precompile += ['controllers/*']
+Rails.application.config.assets.precompile += ['javascripts/controllers/*']
