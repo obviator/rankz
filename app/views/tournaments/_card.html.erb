@@ -1,0 +1,19 @@
+<div class="card-columns">
+  <% tournaments.each do |tournament| %>
+    <div class="card card-primary card-outline">
+      <div class="card-header">
+        <h5 class="m-0">
+          <%= tournament.name %>
+          <%= link_to '', edit_tournament_path(tournament), class: 'fa fa-cog pull-right pale' %>
+        </h5>
+
+      </div>
+      <div class="card-body">
+        <h6 class="card-title"><%= tournament.start_date %></h6>
+
+        <p class="card-text"><%= tournament.desc %></p>
+        <%= link_to 'Select', tournament_teams_path(tournament), class: "btn btn-primary" %>
+      </div>
+    </div>
+  <% end %>
+</div>
