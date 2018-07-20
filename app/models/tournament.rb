@@ -4,7 +4,7 @@ class Tournament < ApplicationRecord
   TIEBREAKERS ||= %w[total_score opponent_score tf ta tn cf ca cn].freeze
 
   has_many :teams, dependent: :restrict_with_error
-  has_many :races
+  has_many :races, dependent: :destroy
   has_many :rounds, dependent: :restrict_with_error
 
   before_validation :default_races
