@@ -9,6 +9,12 @@ class Tournament < ApplicationRecord
 
   before_validation :default_races
 
+  scope :active, -> { where('COALESCE(active,0) > ?', 0) }
+  scope :inactive, -> { where('COALESCE(active,0) = ?', 0) }
+  scope :default, -> { where('COALESCE(active,0) = ?', -1) }
+  scope :current, -> { where('COALESCE(end_date, start_date) >= ?', Date.today) }
+  scope :old, -> { where('COALESCE(end_date, start_date) < ?', Date.today) }
+
   serialize :tiebreaker, Array
 
   resourcify
@@ -32,16 +38,8 @@ class Tournament < ApplicationRecord
   extend FriendlyId
   friendly_id :slug_candidates, use: :slugged
 
-  def self.list
-    Tournament.where('COALESCE(active,0) > ?', 0).order('start_date')
-  end
-
   def tiebreaker=(value)
     super(value & TIEBREAKERS)
-  end
-
-  def active_races
-    races.where('COALESCE(active,0) > ?', 0)
   end
 
   def sorted_teams
@@ -115,11 +113,11 @@ class Tournament < ApplicationRecord
 
   def slug_candidates
     [
-      :name,
-      [:name, start_date.strftime('%y')],
-      [:name, start_date.strftime('%Y')],
-      [:name, start_date.strftime('%y-%m-%d')],
-      [:name, start_date]
+        :name,
+        [:name, start_date.strftime('%y')],
+        [:name, start_date.strftime('%Y')],
+        [:name, start_date.strftime('%y-%m-%d')],
+        [:name, start_date]
     ]
   end
 
