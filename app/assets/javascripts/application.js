@@ -20,5 +20,4 @@
 //= require turbolinks
 //= require bootstrap-notify/bootstrap-notify
 //= require admin-lte/dist/js/adminlte
-//= require_directory .
-//= require_tree ./channels
+//= require_tree .
