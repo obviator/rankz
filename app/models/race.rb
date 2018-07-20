@@ -7,6 +7,8 @@ class Race < ApplicationRecord
   validates :name, presence: true, length: { minimum: 2, maximum: 20 }, uniqueness: { scope: :tournament }
   validates :tournament_id, presence: true
 
+  scope :active, -> { where('COALESCE(active,0) > ?', 0) }
+
   def active?
     active&.positive?
   end
