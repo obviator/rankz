@@ -7,6 +7,8 @@ class Tournament < ApplicationRecord
   has_many :races
   has_many :rounds, dependent: :restrict_with_error
 
+  before_validation :default_races
+
   serialize :tiebreaker, Array
 
   resourcify
@@ -127,5 +129,13 @@ class Tournament < ApplicationRecord
 
   def tiebreaker_whitelist
     errors.add(:tiebreaker, 'violates whitelist.') unless tiebreaker & TIEBREAKERS == tiebreaker
+  end
+
+  def default_races
+    Tournament.where(active: -1).first.races.each do |drace|
+      new_race = drace.dup
+      new_race.tournament = self
+      new_race.save
+    end
   end
 end
