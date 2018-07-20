@@ -4,7 +4,7 @@ class TournamentsController < ApplicationController
   after_action :verify_authorized, except: %i[index]
 
   def index
-    @tournaments = Tournament.list
+    @tournaments = Tournament.all
   end
 
   def show;
