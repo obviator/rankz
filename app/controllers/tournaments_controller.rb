@@ -25,8 +25,8 @@ class TournamentsController < ApplicationController
     authorize @tournament
 
     if @tournament.save
-      current_user.add_role :owner, @tournament
-      redirect_to @tournament, notice: 'Tournament was successfully created.'
+      @tournament.owner = current_user
+      redirect_to tournament_races_url(@tournament), notice: 'Tournament was successfully created.'
     else
       render :new
     end
