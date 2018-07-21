@@ -7,7 +7,7 @@ class Tournament < ApplicationRecord
   has_many :races, dependent: :destroy
   has_many :rounds, dependent: :restrict_with_error
 
-  before_validation :default_races
+  after_create :default_races
 
   scope :active, -> { where('COALESCE(active,0) > ?', 0) }
   scope :inactive, -> { where('COALESCE(active,0) = ?', 0) }
