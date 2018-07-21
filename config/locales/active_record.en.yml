@@ -1,0 +1,8 @@
+
+en:
+  activerecord:
+    models:
+      tournament: Tournament
+    attributes:
+      tournament:
+        name: Name
