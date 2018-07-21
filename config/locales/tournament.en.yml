@@ -5,6 +5,7 @@ en:
     index:
       active: Active
       old: Old
+      mine: My Tournaments
     tiebreakers:
       total_score: Total score
       opponent_score: Opponent score

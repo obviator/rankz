@@ -42,6 +42,13 @@ class Tournament < ApplicationRecord
     super(value & TIEBREAKERS)
   end
 
+  def self.mine(user)
+    joins(roles: :users)
+        .where(roles: { name: 'owner' })
+        .where(users: { id: user.id })
+        .all
+  end
+
   def sorted_teams
     obj = teams.active.shuffle
     tiebreaker.reverse.each do |metric|
