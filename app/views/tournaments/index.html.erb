@@ -2,8 +2,13 @@
 <div class="page-header">
   <h1><%= Tournament.model_name.human.pluralize %></h1>
 </div>
-
+<div>
+  <h3><%= t('.active', default: 'Active') %></h3>
+</div>
 <%= render 'tournaments/card', tournaments: @tournaments.active.current %>
+<div>
+  <h3><%= t('.old', default: 'Active') %></h3>
+</div>
 <%= render 'tournaments/card', tournaments: @tournaments.active.old %>
 
 <%#= link_to 'New Tournament', new_tournament_path %>

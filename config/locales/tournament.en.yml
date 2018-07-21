@@ -2,6 +2,9 @@ en:
   tournaments:
     form:
       add_tiebreaker: <add tiebreaker>
+    index:
+      active: Active
+      old: Old
     tiebreakers:
       total_score: Total score
       opponent_score: Opponent score
