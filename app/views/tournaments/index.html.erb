@@ -5,10 +5,13 @@
 <div>
   <h3><%= t('.active', default: 'Active') %></h3>
 </div>
-<%= render 'tournaments/card', tournaments: @tournaments.active.current %>
+<%= render 'tournaments/card',
+           tournaments: @tournaments.active.current,
+           theme: 'primary' %>
 <div>
   <h3><%= t('.old', default: 'Active') %></h3>
 </div>
-<%= render 'tournaments/card', tournaments: @tournaments.active.old %>
+<%= render 'tournaments/card', tournaments: @tournaments.active.old,
+           theme: 'secondary' %>
 
 <%#= link_to 'New Tournament', new_tournament_path %>
