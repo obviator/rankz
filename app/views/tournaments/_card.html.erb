@@ -4,6 +4,7 @@
       <div class="card-header">
         <h5 class="m-0">
           <%= tournament.name %>
+          <%= t '.inactive', default: '[inactive]' if tournament.active == 0 %>
           <% if tournament.owner == current_user %>
             <%= link_to '', edit_tournament_path(tournament), class: 'fa fa-cog pull-right pale' %>
           <% end %>
