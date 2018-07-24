@@ -1,5 +1,7 @@
 en:
   tournaments:
+    edit:
+      title: Settings
     form:
       add_tiebreaker: <add tiebreaker>
     index:
