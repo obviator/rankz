@@ -10,8 +10,8 @@
 
 system = User.create(username: 'system',
                      confirmed_at: Date.today,
-                     password: ENV['system_password'],
-                     email: ENV['system_email'])
+                     password: ENV.fetch('system_password'),
+                     email: ENV.fetch('system_email'))
 system.add_role :admin
 
 tournament = Tournament.create(name: 'default',
