@@ -16,7 +16,7 @@ system.add_role :admin
 
 tournament = Tournament.create(name: 'default',
                                slug: 'default',
-                               start_date: Date.new(1900, 1, 1),
+                               start_date: Date.today,
                                wincalc: 0,
                                losecalc: 0,
                                drawcalc: 0,
