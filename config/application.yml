@@ -25,3 +25,4 @@ production:
   <<: *defaults
   smtp_domain: 'mail.enjunz.com'
   smtp_host: 'rankz.enjunz.com'
+  system_password: <%= Rails.application.credentials.system_password %>
