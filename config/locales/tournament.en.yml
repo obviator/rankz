@@ -1,5 +1,7 @@
 en:
   tournaments:
+    edit:
+      title: Settings
     form:
       add_tiebreaker: <add tiebreaker>
     index:
@@ -7,6 +9,7 @@ en:
       old: Old
       mine: My Tournaments
     card:
+      inactive: '[inactive]'
       date_format: '%d/%m/%Y'
     tiebreakers:
       total_score: Total score

@@ -6,8 +6,6 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-# Load application ENV vars and merge with existing ENV vars. Loaded here so can use values in initializers.
-ENV.update YAML.load_file('config/application.yml')[Rails.env] rescue {}
 
 module Rankz
   class Application < Rails::Application
@@ -20,3 +18,7 @@ module Rankz
     # the framework and any gems in your application.
   end
 end
+
+# Load application ENV vars and merge with existing ENV vars. Loaded here so can use values in initializers.
+# ENV.update YAML.load_file('config/application.yml')[Rails.env] rescue {}
+ENV.update YAML.load(ERB.new(File.read('config/application.yml')).result)[Rails.env]

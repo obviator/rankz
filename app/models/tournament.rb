@@ -43,11 +43,11 @@ class Tournament < ApplicationRecord
   end
 
   def self.mine(user)
-    return none unless user
+    return Tournament.none unless user
     joins(roles: :users)
-        .where(roles: { name: 'owner' })
-        .where(users: { id: user.id })
-        .all
+      .where(roles: { name: 'owner' })
+      .where(users: { id: user.id })
+      .all
   end
 
   def sorted_teams
@@ -125,11 +125,11 @@ class Tournament < ApplicationRecord
 
   def slug_candidates
     [
-        :name,
-        [:name, start_date.strftime('%y')],
-        [:name, start_date.strftime('%Y')],
-        [:name, start_date.strftime('%y-%m-%d')],
-        [:name, start_date]
+      :name,
+      [:name, start_date.strftime('%y')],
+      [:name, start_date.strftime('%Y')],
+      [:name, start_date.strftime('%y-%m-%d')],
+      [:name, start_date]
     ]
   end
 
