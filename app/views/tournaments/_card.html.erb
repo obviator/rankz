@@ -11,7 +11,13 @@
 
       </div>
       <div class="card-body">
-        <h6 class="card-title"><%= tournament.start_date %></h6>
+        <h6 class="card-title">
+          <%= tournament.start_date.strftime(t '.date_format', default: '%d/%m/%Y') %>
+          <% if tournament.start_date < tournament.try_end_date %>
+          <%= " - #{tournament.try_end_date.strftime(t '.date_format', default: '%d/%m/%Y')}" %>
+          <% end %>
+
+        </h6>
 
         <p class="card-text"><%= tournament.desc %></p>
         <%= link_to 'Select', tournament_teams_path(tournament), class: "btn btn-#{theme}" %>

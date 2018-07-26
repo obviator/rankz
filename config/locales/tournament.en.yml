@@ -6,6 +6,8 @@ en:
       active: Active
       old: Old
       mine: My Tournaments
+    card:
+      date_format: '%d/%m/%Y'
     tiebreakers:
       total_score: Total score
       opponent_score: Opponent score

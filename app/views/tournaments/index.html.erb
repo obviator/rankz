@@ -2,12 +2,14 @@
 <div class="page-header text-center">
   <h1><%= Tournament.model_name.human.pluralize %></h1>
 </div>
-<div>
-  <h3><%= t('.mine', default: 'My Tournaments') %></h3>
-</div>
-<%= render 'tournaments/card',
-           tournaments: @tournaments.active.mine(current_user),
-           theme: 'success' %>
+<% if user_signed_in? %>
+  <div>
+    <h3><%= t('.mine', default: 'My Tournaments') %></h3>
+  </div>
+  <%= render 'tournaments/card',
+             tournaments: @tournaments.active.mine(current_user),
+             theme: 'success' %>
+<% end %>
 <div>
   <h3><%= t('.active', default: 'Active') %></h3>
 </div>
