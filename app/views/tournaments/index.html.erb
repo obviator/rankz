@@ -7,7 +7,7 @@
     <h3><%= t('.mine', default: 'My Tournaments') %></h3>
   </div>
   <%= render 'tournaments/card',
-             tournaments: @tournaments.active.mine(current_user),
+             tournaments: @tournaments.mine(current_user),
              theme: 'success' %>
 <% end %>
 <div>
