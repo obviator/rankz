@@ -43,6 +43,7 @@ class Tournament < ApplicationRecord
   end
 
   def self.mine(user)
+    return none unless user
     joins(roles: :users)
         .where(roles: { name: 'owner' })
         .where(users: { id: user.id })
@@ -81,6 +82,10 @@ class Tournament < ApplicationRecord
       return role.users.first if role.name == 'owner'
     end
     nil
+  end
+
+  def try_end_date
+    end_date || start_date
   end
 
   private
