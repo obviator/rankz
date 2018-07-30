@@ -4,27 +4,23 @@ Rails.application.routes.draw do
   resources :users
 
   resources :tournaments, path: 't', except: %i[index], shallow: true do
+    member do
+      get 'tiebreakers_edit'
+      post 'tiebreakers_update'
+    end
     resources :teams do
-      member do
-        post 'toggle'
-      end
+      post 'toggle', on: :member
     end
     resources :races do
-      member do
-        post 'toggle'
-      end
+      post 'toggle', on: :member
     end
     resources :rounds do
       member do
         post 'redraw'
-      end
-      member do
         post 'reset'
       end
       resources :tables do
-        member do
-          post 'reset'
-        end
+        post 'reset', on: :member
         resources :scores
       end
     end
