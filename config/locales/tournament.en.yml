@@ -4,6 +4,7 @@ en:
       title: Settings
     form:
       add_tiebreaker: <add tiebreaker>
+      edit_tiebreakers: "Edit tiebreakers"
     index:
       active: Active
       old: Old

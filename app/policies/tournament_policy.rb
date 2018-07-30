@@ -8,6 +8,10 @@ class TournamentPolicy < ApplicationPolicy
     user.has_role?(:coach, record) || super
   end
 
+  def tiebreakers_edit?
+    create?
+  end
+
   class Scope < Scope
     def resolve
       scope

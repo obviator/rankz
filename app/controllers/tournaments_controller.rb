@@ -1,6 +1,6 @@
 class TournamentsController < ApplicationController
   include Pundit
-  before_action :set_tournament, only: %i[show edit update destroy]
+  before_action :set_tournament, only: %i[show edit tiebreakers_edit update destroy]
   after_action :verify_authorized, except: %i[index]
 
   def index
@@ -17,6 +17,10 @@ class TournamentsController < ApplicationController
   end
 
   def edit
+    authorize @tournament
+  end
+
+  def tiebreakers_edit
     authorize @tournament
   end
 
