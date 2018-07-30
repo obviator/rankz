@@ -3,29 +3,29 @@ Rails.application.routes.draw do
 
   resources :users
 
-  resources :tournaments, path: 't', except: %i[index] do
-    resources :teams, shallow: true do
+  resources :tournaments, path: 't', except: %i[index], shallow: true do
+    resources :teams do
       member do
         post 'toggle'
       end
     end
-    resources :races, shallow: true do
+    resources :races do
       member do
         post 'toggle'
       end
     end
-    resources :rounds, shallow: true do
+    resources :rounds do
       member do
         post 'redraw'
       end
       member do
         post 'reset'
       end
-      resources :tables, shallow: true do
+      resources :tables do
         member do
           post 'reset'
         end
-        resources :scores, shallow: true
+        resources :scores
       end
     end
   end
