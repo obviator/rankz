@@ -53,17 +53,10 @@
   </div>
   <h3 id="Tiebreakers"><%= form.label :tiebreaker, "Tiebreakers" %></h3>
   <div class="container pull-left col-12">
-    <div id="tiebreaker-list">
-      <% tournament.tiebreaker.each_with_index do |tie, i| %>
-        <%= render 'tiebreakers', tie: tie, new: false %>
+    <div class="col-3">
+      <% tournament.tiebreaker.each do |tie| %>
+        <%= render 'tiebreakers', tie: tie %>
       <% end %>
-    </div>
-    <div class="form-group col-3">
-      <%= select_tag("tournament[tiebreaker][]",
-                     options_for_select(tiebreaker_list tournament: tournament),
-                     prompt: t('.add_tiebreaker', default: '<add tiebreaker>'),
-                     class: "form-control",
-                     id: "add-tiebreaker-select") %>
     </div>
     <div class="form-group">
       <%= link_to t('.edit_tiebreakers', default: 'Edit tiebreakers'), tiebreakers_edit_tournament_path(tournament), remote: true, class: "btn btn-outline-primary" %>

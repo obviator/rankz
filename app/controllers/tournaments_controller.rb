@@ -22,6 +22,9 @@ class TournamentsController < ApplicationController
 
   def tiebreakers_edit
     authorize @tournament
+    respond_to do |format|
+      format.js
+    end
   end
 
   def create

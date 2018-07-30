@@ -1,0 +1,7 @@
+<div class="form-group">
+  <%= select_tag("tournament[tiebreaker][]",
+                 options_for_select(tiebreaker_list tournament: tournament),
+                 prompt: t('.add_tiebreaker', default: '<add tiebreaker>'),
+                 class: "form-control",
+                 id: "add-tiebreaker-select") %>
+</div>

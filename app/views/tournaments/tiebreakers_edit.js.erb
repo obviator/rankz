@@ -1,0 +1,34 @@
+$modalTitle.html('<%= j t('.edit_tiebreaker_title', default: 'Edit Tiebreakers') %>');
+
+$modalBody.html('<%= j render 'tiebreaker_form', tournament: @tournament %>');
+
+<!--$modalFooter.append('<input type="submit" value="Submit" form="edit_team_" class="btn btn-primary">');-->
+$modal.modal();
+
+
+$('#add-tiebreaker-select').change(onSelectChange);
+
+$('#tiebreaker-list div.alert').on('close.bs.alert', onAlertClose);
+
+
+function onAlertClose(e) {
+<!--    $(this).addClass('animated zoomOut');-->
+<!--    e.preventDefault();-->
+    $("#add-tiebreaker-select").append(
+        $('<option></option>').val($(this).find('input#tournament_tiebreaker_').val()).html($(this).find('strong').html())
+    );
+
+}
+
+function onSelectChange() {
+
+    $('#tiebreaker-list').append('<%= j render 'tiebreakers', tie: 'dummy' %>');
+
+    var $last = $('#tiebreaker-list div.alert').last();
+
+    $last.find('strong').html($(this).find(':selected').text());
+    $last.find('input#tournament_tiebreaker_').val(this.value);
+    $last.addClass('animated zoomIn');
+    $last.on('close.bs.alert', onAlertClose);
+    $("#add-tiebreaker-select option[value='" + this.value + "']").remove();
+}

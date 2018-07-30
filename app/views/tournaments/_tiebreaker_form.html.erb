@@ -1,0 +1,6 @@
+<div id="tiebreaker-list">
+  <% tournament.tiebreaker.each do |tie| %>
+    <%= render 'tiebreakers', tie: tie %>
+  <% end %>
+</div>
+<%= render 'tiebreaker_select', tournament: tournament %>
