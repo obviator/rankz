@@ -1,0 +1,9 @@
+$modal.modal('hide');
+
+$('#tiebreaker-list-ro').html('');
+
+<% @tournament.tiebreaker.each do |tie| %>
+$('#tiebreaker-list-ro').append('<%= j render 'tiebreakers', tie: tie, ro: true %>');
+<% end %>
+
+$.notify('<%= j flash[:notice] %>');

@@ -1,6 +1,6 @@
 class TournamentsController < ApplicationController
   include Pundit
-  before_action :set_tournament, only: %i[show edit tiebreakers_edit update destroy]
+  before_action :set_tournament, only: %i[show edit tiebreakers_edit update destroy tiebreakers_update]
   after_action :verify_authorized, except: %i[index]
 
   def index
@@ -49,10 +49,21 @@ class TournamentsController < ApplicationController
     end
   end
 
+  def tiebreakers_update
+    authorize @tournament
+    respond_to do |format|
+      if @tournament.update(tournament_params)
+        format.js { flash.now[:notice] = 'Tiebreakers updated' }
+      else
+        format.js { render action: 'tiebreakers_edit' }
+      end
+    end
+  end
+
   def destroy
     authorize @tournament
     @tournament.destroy
-    redirect_to tournaments_url, notice: 'Tournament was successfully destroyed.'
+    redirect_to tournaments_url, notice: 'Tournament destroyed'
   end
 
   private

@@ -12,6 +12,10 @@ class TournamentPolicy < ApplicationPolicy
     create?
   end
 
+  def tiebreakers_update?
+    update?
+  end
+
   class Scope < Scope
     def resolve
       scope

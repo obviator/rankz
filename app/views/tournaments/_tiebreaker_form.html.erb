@@ -1,6 +1,12 @@
-<div id="tiebreaker-list">
-  <% tournament.tiebreaker.each do |tie| %>
-    <%= render 'tiebreakers', tie: tie %>
-  <% end %>
-</div>
-<%= render 'tiebreaker_select', tournament: tournament %>
+<%= form_with(model: tournament,
+              id: "edit_tournament_tiebreaker_#{tournament.id}",
+              url: tiebreakers_update_tournament_path(tournament),
+              method: :post) do |form| %>
+  <%= render 'shared/errors', obj: tournament %>
+  <div id="tiebreaker-list">
+    <% tournament.tiebreaker.each do |tie| %>
+      <%= render 'tiebreakers', tie: tie %>
+    <% end %>
+  </div>
+  <%= render 'tiebreaker_select', tournament: tournament %>
+<% end %>

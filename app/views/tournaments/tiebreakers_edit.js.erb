@@ -2,6 +2,8 @@ $modalTitle.html('<%= j t('.edit_tiebreaker_title', default: 'Edit Tiebreakers')
 
 $modalBody.html('<%= j render 'tiebreaker_form', tournament: @tournament %>');
 
+$modalFooter.html('<input type="submit" value="Submit" form="edit_tournament_tiebreaker_<%= @tournament.id %>" class="btn btn-primary">');
+
 <!--$modalFooter.append('<input type="submit" value="Submit" form="edit_team_" class="btn btn-primary">');-->
 $modal.modal();
 
