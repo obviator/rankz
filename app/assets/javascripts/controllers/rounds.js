@@ -1,5 +1,8 @@
 $(document).on('turbolinks:load', function () {
     $('#teamFilterSearch').keyup(filterTeams);
+    $('[data-behavior~=cover-spin]').on('click', function(){
+        $('#cover-spin').show();
+    });
 });
 
 function filterTeams() {

@@ -13,12 +13,14 @@
                     method: :post,
                     remote: true,
                     class: "btn btn-info",
-                    data: { confirm: "Clear round #{@round.position} results?" } %>
+                    data: { confirm: "Clear round #{@round.position} results?",
+                    behavior: "cover-spin"} %>
         <%= link_to 'Redraw', redraw_round_path(@round),
                     method: :post,
                     remote: true,
                     class: "btn btn-warning",
-                    data: { confirm: "Clear round #{@round.position} results and redraw?" } %>
+                    data: { confirm: "Clear round #{@round.position} results and redraw?",
+                            behavior: "cover-spin" } %>
         <%= link_to 'Delete', round_path(@round),
                     method: :delete,
                     class: "btn btn-danger",
