@@ -1,8 +1,8 @@
-<tr id="team_row_<%= team.id %>">
-  <td>
+<tr id="team_row_<%= team.id %>" class="slideInRight" data-behavior="filterable">
+  <td data-behavior="searchable">
     <%= team.name %>
   </td>
-  <td>
+  <td data-behavior="searchable">
     <%= team.race.name %>
   </td>
   <td>

@@ -1,8 +1,8 @@
 <div class="card-columns">
   <% tournaments.each do |tournament| %>
-    <div class="card card-<%= theme %> card-outline">
+    <div class="card card-<%= theme %> card-outline flipInX" data-behavior="filterable">
       <div class="card-header">
-        <h5 class="m-0">
+        <h5 class="m-0" data-behavior="searchable">
           <%= tournament.name %>
           <%= t '.inactive', default: '[inactive]' if tournament.active == 0 %>
           <% if tournament.owner == current_user %>
@@ -20,7 +20,7 @@
 
         </h6>
 
-        <p class="card-text"><%= tournament.desc %></p>
+        <p class="card-text" data-behavior="searchable"><%= tournament.desc %></p>
         <%= link_to 'Select', tournament_teams_path(tournament), class: "btn btn-#{theme}" %>
       </div>
     </div>

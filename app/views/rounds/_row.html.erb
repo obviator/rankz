@@ -1,4 +1,4 @@
-<tbody id="table-list-<%= table.id %>" class="table-list-body slideInRight" data-behavior="searchable-table">
+<tbody id="table-list-<%= table.id %>" class="table-list-body slideInRight" data-behavior="filterable">
 <tr id="table_row_<%= table.id %>">
   <th rowspan=2 scope="row" class="text-center align-middle">
     <%= link_to table.position, edit_table_path(table),
@@ -12,10 +12,10 @@
     <% unless i == 0 %>
     <tr id="table_row_<%= table.id %>_5">
   <% end %>
-  <td data-behavior="searchable-cell">
+  <td data-behavior="searchable">
     <%= score.team.name %>
   </td>
-  <td data-behavior="searchable-cell" class="hide">
+  <td data-behavior="searchable" class="hide">
     <%= table.position %>
   </td>
   <td class="text-center">
