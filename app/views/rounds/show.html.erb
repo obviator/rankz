@@ -6,7 +6,6 @@
 </div>
 <% if @round.last? %>
   <div class="row text-center">
-    <input type="text" id="teamFilterSearch" class="form-control col-2 offset-1" placeholder="<%= t '.search_terms' %>">
     <div class="col-2 offset-6">
       <div class="btn-group" role="group">
         <%= link_to 'Reset', reset_round_path(@round),
