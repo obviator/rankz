@@ -16,6 +16,11 @@ $('#tiebreaker-list div.alert').on('close.bs.alert', onAlertClose);
 function onAlertClose(e) {
 <!--    $(this).addClass('animated zoomOut');-->
 <!--    e.preventDefault();-->
+    e.preventDefault();
+    e.stopPropagation();
+    $(e.target).slideUp(400, function() {
+        $(this).remove();
+    });
     $("#add-tiebreaker-select").append(
         $('<option></option>').val($(this).find('input#tournament_tiebreaker_').val()).html($(this).find('strong').html())
     );
